@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="300" pageHeight="300" columnWidth="260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6117d35-40c6-4d74-b990-6d90db767bbf">
+	<property name="ireport.zoom" value="1.210000000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select c.id_conta, produtos.pro_nome, mesas.ms_nome, c.con_pro_qut, c.con_pro_preco, c.con_pro_sub, c.inativo from contas as c inner join produtos on(c.fk_produto=produtos.id_produto) inner join mesas on(c.fk_mesa=mesas.id_mesa) where c.fk_mesa=5;]]>
+	</queryString>
+	<field name="id_conta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ms_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="con_pro_qut" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="con_pro_preco" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="con_pro_sub" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inativo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TOTAL" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{con_pro_sub}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="45" width="220" height="20" uuid="b64c3d36-a558-448e-a32b-76b123f6c2d2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[---------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="27" y="27" width="200" height="13" uuid="0d84be6e-d923-4d5b-a9ce-b78fdc8ac92b"/>
+				<textElement textAlignment="Center">
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[B. ZIMPETO N92, CIDADE DE MAPUTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="258" height="27" uuid="05e00ca1-c475-4f98-a274-ff843bd69ed5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Ebrima" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KUTSAMBA RESTAURANTE]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="55" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="24" uuid="8e04a7b1-39a8-4be5-a213-f8b5eb2beb0d"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPRA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="18" height="14" uuid="33411369-137a-460a-a195-b013bd8852d8"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[ID: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="120" y="40" width="34" height="14" uuid="e073b717-e215-4d78-99fc-1fde0b6e1118"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="19" y="26" width="100" height="14" uuid="d41e685c-607a-428f-b937-b5deb5b98c54"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_conta}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="2" y="41" width="39" height="14" uuid="4506133c-ea8f-4c0d-966f-45bb49f510d7"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mesa: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="37" y="41" width="100" height="14" uuid="1ef84dae-3f66-43e9-b61a-d5590d31d1d6"/>
+				<textElement>
+					<font fontName="Trebuchet MS" size="12" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ms_nome}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy h.mm a">
+				<reportElement x="154" y="40" width="100" height="14" uuid="bfec2d22-3b3b-4e12-9479-3cdb82599c91"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="27" width="70" height="20" uuid="11486651-622c-4eec-8711-abbaa45f3df1"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Produtos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="145" y="27" width="36" height="20" uuid="7a97375c-d38a-4f23-bfe7-df87e1752479"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Preço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="83" y="27" width="36" height="20" uuid="67b4a8fc-4723-4709-ad60-690236ca1a80"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Qtd]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="0" width="220" height="20" uuid="89eddcdc-8d09-4d3b-b071-0dcec57004c8"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[---------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="27" width="44" height="20" uuid="68eda921-f448-4f37-96ab-f70d763b767c"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="2" width="55" height="17" uuid="f22ee446-a7b6-413e-bbaf-a98cc12d92cc"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{con_pro_preco}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="70" height="17" uuid="f2409832-b4f8-4d74-9286-98c6a83b1e30"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="83" y="2" width="36" height="18" uuid="bb574038-3206-4114-b93a-91523965d381"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{con_pro_qut}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="190" y="0" width="54" height="17" uuid="7d85f97f-395e-4854-81bc-5733104a84e0"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{con_pro_sub}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="133" height="20" uuid="1e27d44a-77ba-444f-b1b7-0511319e5145"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<text><![CDATA[---------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="61" y="49" width="129" height="20" uuid="d6845fef-704b-41a9-9995-65893e9d0524"/>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[----OBRIGADO----]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="58" y="34" width="136" height="15" uuid="d77d3bfa-8d91-4ab1-bc72-860e75e6e838"/>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS"/>
+				</textElement>
+				<text><![CDATA[Contacto: +258 843 492 413]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="137" y="3" width="50" height="20" uuid="4717cd88-44b0-475a-8771-ceca56411a09"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="182" y="3" width="77" height="20" uuid="cb213c0f-f74f-4fef-9281-bd5fce86ac85"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL} + " MZN"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
