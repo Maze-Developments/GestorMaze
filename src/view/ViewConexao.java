@@ -318,7 +318,7 @@ public class ViewConexao extends javax.swing.JFrame {
         boolean leitura = false;
         try {
             String linha;
-            String ArquivoConfiguracao = "database/ConexaoBanco/Configuracao/conexao.ini";
+            String ArquivoConfiguracao = "database/ConexaoBanco/Configuracao/config.proprieties";
             int cont = 0;
             File arq = new File(ArquivoConfiguracao);
             if (arq.exists()) {
@@ -363,7 +363,7 @@ public class ViewConexao extends javax.swing.JFrame {
             if (!diretorio.exists()) {
                 diretorio.mkdirs();
             }
-            FileWriter arq1 = new FileWriter("database/ConexaoBanco/Configuracao/conexao.ini");
+            FileWriter arq1 = new FileWriter("database/ConexaoBanco/Configuracao/config.proprieties");
             PrintWriter gravarArq = new PrintWriter(arq1);
             gravarArq.println(jTF_servidor.getText());
             gravarArq.println(jTF_porta.getText());
@@ -390,9 +390,7 @@ public class ViewConexao extends javax.swing.JFrame {
                     USUARIO, SENHA);
             com = true;
         } catch (ClassNotFoundException Fonte) {
-//            JOptionPane.showMessageDialog(null, "Driver nao localizado" + Fonte);
         } catch (SQLException Fonte) {
-//            JOptionPane.showMessageDialog(null, "Driver:" + Fonte);
         }
         return com;
     }
@@ -449,6 +447,8 @@ public class ViewConexao extends javax.swing.JFrame {
             sucesso = false;
         } else if (CRIA_TABELA_VENDAS() == false) {
             sucesso = false;
+        } else if (CRIA_VOID() == false) {
+            sucesso = false;
         } else if (CRIA_ADMIN() == false) {
             sucesso = false;
         }
@@ -503,7 +503,8 @@ public class ViewConexao extends javax.swing.JFrame {
         PreparedStatement stm;
         String sql = "CREATE TABLE IF NOT EXISTS gestordevendas.mesas ( "
                 + "id_mesa INT NOT NULL AUTO_INCREMENT , "
-                + "ms_nome VARCHAR(50) NOT NULL , "
+                + "ms_nome VARCHAR(50) NOT NULL ,"
+                + "hide TINYINT DEFAULT '0' ,"
                 + "PRIMARY KEY (id_mesa))";
         try {
             stm = CONEXAO.prepareStatement(sql);
@@ -569,6 +570,31 @@ public class ViewConexao extends javax.swing.JFrame {
                 + "FOREIGN KEY (fk_conta) REFERENCES contas(id_conta) ON DELETE RESTRICT)";
         try {
             stm = CONEXAO.prepareStatement(sql);
+            stm.execute();
+            sucesso = true;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", 0);
+        }
+        return sucesso;
+    }
+
+    private boolean CRIA_VOID() {
+        boolean sucesso = false;
+        PreparedStatement stm;
+        String nome = "Mesa-101";
+        int hide = 1;
+
+        try {
+            String sqlin = "insert into gestordevendas.mesas ("
+                    + "ms_nome, "
+                    + "hide)"
+                    + "values(?,?)";
+            // Preparar a string
+            stm = CONEXAO.prepareStatement(sqlin);
+
+            stm.setString(1, nome);
+            stm.setInt(2, hide);
+
             stm.execute();
             sucesso = true;
         } catch (SQLException ex) {

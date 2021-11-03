@@ -263,4 +263,18 @@ public class ItensVendaDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
+    public void voidProduto(int id) {
+        try {
+            String sql = "update contas set fk_mesa = " + 1 + " where id_conta =?";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            stmt.setInt(1, id);
+
+            stmt.execute();
+            stmt.close();
+            
+            JOptionPane.showMessageDialog(null, "SUCESSO");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+    }
 }

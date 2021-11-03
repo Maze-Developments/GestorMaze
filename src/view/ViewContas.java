@@ -150,6 +150,7 @@ public final class ViewContas extends javax.swing.JFrame {
         jTf_data = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jTF_ms_codigo = new javax.swing.JTextField();
+        jBtn_void = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_vendas = new javax.swing.JTable();
@@ -200,7 +201,12 @@ public final class ViewContas extends javax.swing.JFrame {
 
         jBtn_novacon.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_novacon.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jBtn_novacon.setText("Nova");
+        jBtn_novacon.setText("Fechar");
+        jBtn_novacon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_novaconActionPerformed(evt);
+            }
+        });
 
         jBtn_adicionarcon.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_adicionarcon.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -315,6 +321,11 @@ public final class ViewContas extends javax.swing.JFrame {
                 jComb_mesaItemStateChanged(evt);
             }
         });
+        jComb_mesa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComb_mesaActionPerformed(evt);
+            }
+        });
 
         jLabel9.setText("Mesa");
 
@@ -325,6 +336,15 @@ public final class ViewContas extends javax.swing.JFrame {
         jLabel10.setText("Data");
 
         jTF_ms_codigo.setEditable(false);
+
+        jBtn_void.setBackground(new java.awt.Color(255, 255, 255));
+        jBtn_void.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jBtn_void.setText("Void");
+        jBtn_void.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_voidActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -337,7 +357,8 @@ public final class ViewContas extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jBtn_remover_con, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtn_adicionarcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtn_novacon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtn_novacon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -466,6 +487,8 @@ public final class ViewContas extends javax.swing.JFrame {
                                 .addComponent(jBtn_remover_con, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBtn_imprimir_con, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -646,6 +669,7 @@ public final class ViewContas extends javax.swing.JFrame {
     private void jTable_con_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_con_produtosMouseClicked
         // TODO add your handling code here:
         int linha = jTable_con_produtos.getSelectedRow();
+        
 
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione a linha que pretende Editar!");
@@ -713,7 +737,6 @@ public final class ViewContas extends javax.swing.JFrame {
 
     private void jComb_mesaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComb_mesaItemStateChanged
         // TODO add your handling code here:
-
         try {
             String nome = jComb_mesa.getSelectedItem().toString();
             MesaDAO dao = new MesaDAO();
@@ -729,20 +752,18 @@ public final class ViewContas extends javax.swing.JFrame {
             listarContas();
         } catch (Exception e) {
         }
-
-
     }//GEN-LAST:event_jComb_mesaItemStateChanged
 
     private void jBtn_imprimir_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_imprimir_conActionPerformed
         // TODO add your handling code here:
+        
         Date data = new Date();
         SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
         String dat = dataSql.format(data);
-
+        
         ItensVendaDAO dao = new ItensVendaDAO();
         int mesa = Integer.valueOf(jTF_ms_codigo.getText());
         dao.imprimirConta(mesa, dat);
-        dao.finalizarConta(mesa, dat);
 
     }//GEN-LAST:event_jBtn_imprimir_conActionPerformed
 
@@ -787,6 +808,7 @@ public final class ViewContas extends javax.swing.JFrame {
          * @param data E AO GUARDAR ALTERE O VALOR DE INATIVO PARA 2 DA TABELA DE
          * CONTAS
          */
+        
         int linha = jTable_vendas.getRowCount();
         jTable_vendas.selectAll();
         int lin = jTable_vendas.getSelectedRow();
@@ -819,6 +841,44 @@ public final class ViewContas extends javax.swing.JFrame {
         dados.setNumRows(0);
         listarVendas();
     }//GEN-LAST:event_jTP_menuFocusGained
+
+    private void jBtn_novaconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_novaconActionPerformed
+        // TODO add your handling code here:
+        Date data = new Date();
+        SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
+        String dat = dataSql.format(data);
+
+        ItensVendaDAO dao = new ItensVendaDAO();
+        int mesa = Integer.valueOf(jTF_ms_codigo.getText());
+        dao.imprimirConta(mesa, dat);
+        dao.finalizarConta(mesa, dat);
+    }//GEN-LAST:event_jBtn_novaconActionPerformed
+
+    private void jBtn_voidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_voidActionPerformed
+        // TODO add your handling code here:
+        
+        /**
+        *Fazer void de produtos
+        *Para fazer void do produto é necessario pegar o id da produto na tabela de contas
+        *e alterar o id da mesa na conta especifica
+        * @param jTable_contas,
+        */
+        ItensVendaDAO dao = new ItensVendaDAO();
+        
+        int linha = jTable_contas.getSelectedRow();
+        int codigo = (int) jTable_contas.getValueAt(linha, 0);
+        
+        dao.voidProduto(codigo);
+        listarVendas();
+        
+    }//GEN-LAST:event_jBtn_voidActionPerformed
+
+    private void jComb_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComb_mesaActionPerformed
+        // TODO add your handling code here:
+        if(jComb_mesa.getSelectedIndex() == 0){
+            jTF_ms_codigo.setText(String.valueOf(1));
+        }
+    }//GEN-LAST:event_jComb_mesaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -862,6 +922,7 @@ public final class ViewContas extends javax.swing.JFrame {
     private javax.swing.JButton jBtn_novacon;
     private javax.swing.JButton jBtn_psr_prodoto;
     private javax.swing.JButton jBtn_remover_con;
+    private javax.swing.JButton jBtn_void;
     private javax.swing.JComboBox jComb_mesa;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

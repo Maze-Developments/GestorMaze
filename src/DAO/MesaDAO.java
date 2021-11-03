@@ -104,13 +104,13 @@ public class MesaDAO {
 
     public void excluirMesa(Mesa obj) {
         try {
-            String sql = "delete from mesas where id_mesa = ?";
+            String sql = "delete from mesas where id_mesa = ? and hide=0";
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setInt(1, obj.getMsa_id());
             stmt.execute();
             stmt.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Impossivel remover esta mesa! ");
         }
     }
 }
