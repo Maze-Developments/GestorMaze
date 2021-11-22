@@ -4,9 +4,12 @@
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<queryString>
-		<![CDATA[select produtos.pro_nome, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v inner join contas on(v.fk_conta=contas.id_conta) INNER JOIN produtos ON(contas.fk_produto=produtos.id_produto) inner join mesas on(contas.fk_mesa=mesas.id_mesa) where v.vd_data between '2021-10-16' and '2021-10-16';]]>
+		<![CDATA[select produtos.pro_nome, contas.con_pro_qut, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v inner join contas on(v.fk_conta=contas.id_conta) INNER JOIN produtos ON(contas.fk_produto=produtos.id_produto) inner join mesas on(contas.fk_mesa=mesas.id_mesa) where v.vd_data between '2021-11-22' and '2021-11-22';]]>
 	</queryString>
 	<field name="pro_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="con_pro_qut" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="ms_nome" class="java.lang.String">
@@ -36,18 +39,18 @@
 					<text><![CDATA[RELÁTORIO]]></text>
 				</staticText>
 				<staticText>
-					<reportElement x="434" y="43" width="35" height="20" forecolor="#FFFFFF" uuid="2df91e79-b08d-458e-9a6d-ea43a67ee37c"/>
+					<reportElement x="449" y="43" width="35" height="20" forecolor="#FFFFFF" uuid="2df91e79-b08d-458e-9a6d-ea43a67ee37c"/>
 					<textElement>
 						<font size="14" isBold="false"/>
 					</textElement>
 					<text><![CDATA[Data:]]></text>
 				</staticText>
 				<textField isStretchWithOverflow="true">
-					<reportElement x="457" y="43" width="138" height="20" forecolor="#FFFFFF" uuid="4be86cfd-e611-42f7-8b6e-47dabdc6de71"/>
+					<reportElement x="484" y="43" width="91" height="20" forecolor="#FFFFFF" uuid="4be86cfd-e611-42f7-8b6e-47dabdc6de71"/>
 					<textElement textAlignment="Center">
 						<font size="14"/>
 					</textElement>
-					<textFieldExpression><![CDATA[$F{vd_data}]]></textFieldExpression>
+					<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($F{vd_data})]]></textFieldExpression>
 				</textField>
 			</frame>
 		</band>
@@ -75,7 +78,7 @@
 				<text><![CDATA[Produto]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="276" y="0" width="138" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="62feb425-8e4a-447a-9260-a8bdf2bd171a"/>
+				<reportElement mode="Opaque" x="276" y="0" width="108" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="62feb425-8e4a-447a-9260-a8bdf2bd171a"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -87,6 +90,13 @@
 					<font size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Subtotal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="384" y="0" width="30" height="20" forecolor="#006699" backcolor="#E6E6E6" uuid="fb30fcc7-c4ca-46b3-9e30-62aaf4ce18b8"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Qtd]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -110,18 +120,25 @@
 				<textFieldExpression><![CDATA[$F{pro_nome}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="276" y="0" width="138" height="20" uuid="74c89bc9-39ad-42f3-8d07-d3cb7c3b4a17"/>
-				<textElement textAlignment="Center">
-					<font size="14"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{vd_data}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
 				<reportElement x="414" y="0" width="138" height="20" uuid="a86b19a3-c0c8-41bb-a06d-074bab9868bd"/>
 				<textElement textAlignment="Center">
 					<font size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{vd_total} + " MT"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="276" y="0" width="108" height="20" uuid="74c89bc9-39ad-42f3-8d07-d3cb7c3b4a17"/>
+				<textElement textAlignment="Center">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd-MM-yyyy").format($F{vd_data})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="384" y="0" width="30" height="19" uuid="47c1a888-5bd1-402e-b6ad-bdf01e9f93de"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{con_pro_qut}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

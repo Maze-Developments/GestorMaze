@@ -95,7 +95,7 @@ public class ViewPrincipal extends javax.swing.JFrame {
         jBtn_relatorios.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_relatorios.setFont(new java.awt.Font("Vodafone ExB", 0, 18)); // NOI18N
         jBtn_relatorios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons/Login_48x48.png"))); // NOI18N
-        jBtn_relatorios.setText("Amnin");
+        jBtn_relatorios.setText("Admin");
         jBtn_relatorios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtn_relatoriosActionPerformed(evt);

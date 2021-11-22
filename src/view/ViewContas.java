@@ -16,6 +16,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.Funcionario;
 import model.ItensVenda;
 import model.Mesa;
 import model.Produto;
@@ -30,7 +31,7 @@ public final class ViewContas extends javax.swing.JFrame {
     /**
      * Creates new form ViewContas
      */
-    public String admin;
+    public String admin, nomeLogado;
     double preco, subtotal, total;
     int qtd;
     DefaultTableModel carrinho;
@@ -75,7 +76,9 @@ public final class ViewContas extends javax.swing.JFrame {
         for (ItensVenda i : lista) {
             jTF_total_hoje.setText("");
             tot += i.getSubtotal();
-            jTF_total_hoje.setText(String.valueOf(tot + " MT"));
+            if (!admin.equals("Usuario")) {
+                jTF_total_hoje.setText(String.valueOf(tot + " MT"));
+            }
             dados.addRow(new Object[]{
                 i.getId(),
                 i.getMesas().getMsa_nome(),
@@ -151,6 +154,8 @@ public final class ViewContas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTF_ms_codigo = new javax.swing.JTextField();
         jBtn_void = new javax.swing.JButton();
+        Lbl_func_nome = new javax.swing.JLabel();
+        jBtn_Habilitar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_vendas = new javax.swing.JTable();
@@ -346,80 +351,100 @@ public final class ViewContas extends javax.swing.JFrame {
             }
         });
 
+        Lbl_func_nome.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        Lbl_func_nome.setText("Nome do Funcionario");
+
+        jBtn_Habilitar.setBackground(new java.awt.Color(255, 255, 255));
+        jBtn_Habilitar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jBtn_Habilitar.setText("Nova");
+        jBtn_Habilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_HabilitarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtn_imprimir_con, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jBtn_remover_con, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtn_adicionarcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtn_novacon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jBtn_imprimir_con, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jBtn_remover_con, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jBtn_adicionarcon, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jBtn_novacon, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(Lbl_func_nome))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jBtn_Habilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTF_psr_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtn_psr_prodoto))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTF_ms_codigo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(29, 29, 29))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jComb_mesa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTF_codigo_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                                    .addComponent(jLabel4))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel5)
+                                            .addComponent(jTF_produto_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jTF_estoque_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jLabel7)
+                                                .addGap(33, 33, 33))
+                                            .addComponent(jTF_preco_pro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel8)
+                                            .addComponent(jTF_quantidade_req, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel10)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTf_data, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(jTF_total, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel2)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTF_psr_produto, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBtn_psr_prodoto))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jTF_ms_codigo)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel9)
-                                                .addGap(29, 29, 29))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jComb_mesa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTF_codigo_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
-                                            .addComponent(jLabel4))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel5)
-                                                    .addComponent(jTF_produto_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jTF_estoque_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jLabel7)
-                                                        .addGap(33, 33, 33))
-                                                    .addComponent(jTF_preco_pro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel8)
-                                                    .addComponent(jTF_quantidade_req, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel10)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jTf_data, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 355, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -489,7 +514,10 @@ public final class ViewContas extends javax.swing.JFrame {
                                 .addComponent(jBtn_imprimir_con, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBtn_Habilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Lbl_func_nome)))))
                 .addContainerGap())
         );
 
@@ -574,7 +602,6 @@ public final class ViewContas extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-//        listarContas();
         MesaDAO dao = new MesaDAO();
         List<Mesa> lista = dao.listarMesas();
 
@@ -636,10 +663,7 @@ public final class ViewContas extends javax.swing.JFrame {
                     ItensVendaDAO ivdao = new ItensVendaDAO();
                     ProdutoDAO dao = new ProdutoDAO();
 
-//                    ivdao.cadastrarItensVenda(iv);
-                   
-                        ivdao.cadastrarItensVenda(iv);
-                    
+                    ivdao.cadastrarItensVenda(iv);
 
                     dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText()));
                     DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
@@ -669,7 +693,6 @@ public final class ViewContas extends javax.swing.JFrame {
     private void jTable_con_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_con_produtosMouseClicked
         // TODO add your handling code here:
         int linha = jTable_con_produtos.getSelectedRow();
-        
 
         if (linha == -1) {
             JOptionPane.showMessageDialog(null, "Selecione a linha que pretende Editar!");
@@ -756,14 +779,15 @@ public final class ViewContas extends javax.swing.JFrame {
 
     private void jBtn_imprimir_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_imprimir_conActionPerformed
         // TODO add your handling code here:
-        
+        jBtn_imprimir_con.setEnabled(false);
         Date data = new Date();
         SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
         String dat = dataSql.format(data);
-        
+
         ItensVendaDAO dao = new ItensVendaDAO();
         int mesa = Integer.valueOf(jTF_ms_codigo.getText());
         dao.imprimirConta(mesa, dat);
+
 
     }//GEN-LAST:event_jBtn_imprimir_conActionPerformed
 
@@ -805,10 +829,9 @@ public final class ViewContas extends javax.swing.JFrame {
          *
          * @param id_conta
          * @param total
-         * @param data E AO GUARDAR ALTERE O VALOR DE INATIVO PARA 2 DA TABELA DE
-         * CONTAS
+         * @param data E AO GUARDAR ALTERE O VALOR DE INATIVO PARA 2 DA TABELA
+         * DE CONTAS
          */
-        
         int linha = jTable_vendas.getRowCount();
         jTable_vendas.selectAll();
         int lin = jTable_vendas.getSelectedRow();
@@ -856,29 +879,35 @@ public final class ViewContas extends javax.swing.JFrame {
 
     private void jBtn_voidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_voidActionPerformed
         // TODO add your handling code here:
-        
+
         /**
-        *Fazer void de produtos
-        *Para fazer void do produto é necessario pegar o id da produto na tabela de contas
-        *e alterar o id da mesa na conta especifica
-        * @param jTable_contas,
-        */
+         * Fazer void de produtos Para fazer void do produto é necessario pegar
+         * o id da produto na tabela de contas e alterar o id da mesa na conta
+         * especifica
+         *
+         * @param jTable_contas,
+         */
         ItensVendaDAO dao = new ItensVendaDAO();
-        
+
         int linha = jTable_contas.getSelectedRow();
         int codigo = (int) jTable_contas.getValueAt(linha, 0);
-        
+
         dao.voidProduto(codigo);
         listarVendas();
-        
+
     }//GEN-LAST:event_jBtn_voidActionPerformed
 
     private void jComb_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComb_mesaActionPerformed
         // TODO add your handling code here:
-        if(jComb_mesa.getSelectedIndex() == 0){
+        if (jComb_mesa.getSelectedIndex() == 0) {
             jTF_ms_codigo.setText(String.valueOf(1));
         }
     }//GEN-LAST:event_jComb_mesaActionPerformed
+
+    private void jBtn_HabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_HabilitarActionPerformed
+        // TODO add your handling code here:
+        jBtn_imprimir_con.setEnabled(true);
+    }//GEN-LAST:event_jBtn_HabilitarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -916,7 +945,9 @@ public final class ViewContas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Lbl_func_nome;
     private javax.swing.JButton jBtn_Fechar_conta;
+    private javax.swing.JButton jBtn_Habilitar;
     private javax.swing.JButton jBtn_adicionarcon;
     private javax.swing.JButton jBtn_imprimir_con;
     private javax.swing.JButton jBtn_novacon;

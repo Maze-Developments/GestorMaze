@@ -100,7 +100,7 @@ public class VendaDAO {
     
         public void imprimirRelatorio(String data, String datafim) {
         try {
-            String sql = "select produtos.pro_nome, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v "
+            String sql = "select produtos.pro_nome,contas.con_pro_qut, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v "
                     + "inner join contas on(v.fk_conta=contas.id_conta) "
                     + "INNER JOIN produtos ON(contas.fk_produto=produtos.id_produto) "
                     + "inner join mesas on(contas.fk_mesa=mesas.id_mesa) "
