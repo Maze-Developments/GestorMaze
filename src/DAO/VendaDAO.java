@@ -44,7 +44,7 @@ public class VendaDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872-293-580");
         }
     }
 
@@ -68,7 +68,7 @@ public class VendaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872-293-580");
         }
         return null;
     }
@@ -93,7 +93,7 @@ public class VendaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872-293-580");
         }
         return null;
     }

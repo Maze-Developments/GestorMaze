@@ -5,7 +5,6 @@
  */
 package view;
 
-
 import DAO.FuncionarioDAO;
 import DAO.MesaDAO;
 import java.awt.Toolkit;
@@ -27,6 +26,8 @@ public final class ViewAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form ViewFuncionario
      */
+    ViewRelatorios rel = null;
+
     public void listar() {
         FuncionarioDAO dao = new FuncionarioDAO();
         List<Funcionario> lista = dao.listarFuncionarios();
@@ -54,7 +55,7 @@ public final class ViewAdministrador extends javax.swing.JFrame {
             dados.addRow(new Object[]{
                 m.getMsa_id(),
                 m.getMsa_nome()
-                });
+            });
         }
     }
 
@@ -71,9 +72,11 @@ public final class ViewAdministrador extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage();
     }
-        public void setIconImage(){
-    setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-}
+
+    public void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -387,7 +390,7 @@ public final class ViewAdministrador extends javax.swing.JFrame {
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        
+
         listar();
         listarMesas();
     }//GEN-LAST:event_formWindowActivated
@@ -414,7 +417,7 @@ public final class ViewAdministrador extends javax.swing.JFrame {
         // TODO add your handling code here:
         Mesa obj = new Mesa();
         // Verifica se os campos estao vazios
-        if (jTF_Mesa.getText().equals("")){
+        if (jTF_Mesa.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Preencha o campo Nome!");
         } else {
@@ -468,8 +471,8 @@ public final class ViewAdministrador extends javax.swing.JFrame {
 
         // Verifica se os campos estao vazios
         if (jTF_fun_nome_.getText().equals("")
-            || jTF_fun_bi.getText().equals("")
-            || jTF_fun_telefone.getText().equals("")) {
+                || jTF_fun_bi.getText().equals("")
+                || jTF_fun_telefone.getText().equals("")) {
 
             JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
         } else {
@@ -495,7 +498,9 @@ public final class ViewAdministrador extends javax.swing.JFrame {
 
     private void jBtn_RelatorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_RelatorioActionPerformed
         // TODO add your handling code here:
-        ViewRelatorios rel = new ViewRelatorios();
+        if (rel == null) {
+            rel = new ViewRelatorios();
+        }
         rel.setVisible(true);
     }//GEN-LAST:event_jBtn_RelatorioActionPerformed
 

@@ -41,7 +41,7 @@ public class MesaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872 293 580");
         }
         return null;
     }
@@ -60,7 +60,7 @@ public class MesaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872 293 580");
         }
         return null;
     }
@@ -85,7 +85,7 @@ public class MesaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872 293 580");
         }
         return null;
     }
@@ -98,7 +98,7 @@ public class MesaDAO {
             stmt.execute();
             stmt.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872 293 580");
         }
     }
 

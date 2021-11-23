@@ -22,7 +22,7 @@ public class ConexaoBanco {
     
     public Connection conectar(){
         try{
-            return DriverManager.getConnection("jdbc:mysql://"+SERVIDOR+":3312/"+BANCO, USUARIO, SENHA);
+            return DriverManager.getConnection("jdbc:mysql://"+SERVIDOR+"/"+BANCO, USUARIO, SENHA);
             
         }catch (SQLException e){
             JOptionPane.showMessageDialog(null,"Erro: "+e);

@@ -19,6 +19,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form ViewPrincipal
      */
+    ViewContas contas = null;
+    ViewAdministrador adm = null;
+    ViewProdutos pro = null;
     public String admin, nomeLogado;
 
     public ViewPrincipal() {
@@ -28,9 +31,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage();
     }
-    public void setIconImage(){
-    setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-}
+
+    public void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
 //    public void verificaNivelacesso()
 
     /**
@@ -220,7 +224,10 @@ public class ViewPrincipal extends javax.swing.JFrame {
 
     private void jBtn_produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_produtosActionPerformed
         // TODO add your handling code here:
-        new ViewProdutos().setVisible(true);
+        if (pro == null) {
+            pro = new ViewProdutos();
+        }
+        pro.setVisible(true);
     }//GEN-LAST:event_jBtn_produtosActionPerformed
 
     private void jBtn_sairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_sairActionPerformed
@@ -236,14 +243,20 @@ public class ViewPrincipal extends javax.swing.JFrame {
     private void jBtn_contasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_contasActionPerformed
         // TODO add your handling code here:
 
-        ViewContas contas = new ViewContas();
+        if (contas == null) {
+            contas = new ViewContas();
+        }
         contas.admin = admin;
         contas.setVisible(true);
     }//GEN-LAST:event_jBtn_contasActionPerformed
 
     private void jBtn_relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_relatoriosActionPerformed
         // TODO add your handling code here:
-        new ViewAdministrador().setVisible(true);
+
+        if (adm == null) {
+            adm = new ViewAdministrador();
+        }
+        adm.setVisible(true);
     }//GEN-LAST:event_jBtn_relatoriosActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

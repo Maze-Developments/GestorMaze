@@ -40,7 +40,8 @@ public final class ViewProdutos extends javax.swing.JFrame {
                 p.getPro_preco(),});
         }
     }
-    public void listarCategorias(){
+
+    public void listarCategorias() {
         CategoriaDAO dao = new CategoriaDAO();
         List<Categoria> lista = dao.listarCategorias();
 
@@ -56,10 +57,11 @@ public final class ViewProdutos extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage();
     }
-    
-    public void setIconImage(){
-    setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-}
+
+    public void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -381,10 +383,10 @@ public final class ViewProdutos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
         } else {
             // Pega os valores inseridos nos campos e armazena na classe Produto
-            obj.setPro_nome(jPro_nome.getText());
-            obj.setPro_categoria(jPro_categoria.getSelectedItem().toString());
-            obj.setPro_quantidade(Integer.parseInt(jPro_quantidade.getText()));
-            obj.setPro_preco(Double.parseDouble(jPro_preco.getText()));
+            obj.setPro_nome(jPro_nome.getText().trim());
+            obj.setPro_categoria(jPro_categoria.getSelectedItem().toString().trim());
+            obj.setPro_quantidade(Integer.parseInt(jPro_quantidade.getText().trim()));
+            obj.setPro_preco(Double.parseDouble(jPro_preco.getText().trim()));
 
             // instancia o DAO e faz executa o metodo de cadastro dos produtos
             ProdutoDAO dao = new ProdutoDAO();
@@ -433,11 +435,11 @@ public final class ViewProdutos extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
         } else {
             // Pega os valores inseridos nos campos e armazena na classe Produto
-            int codigo = Integer.parseInt(jPro_codigo.getText());
-            obj.setPro_nome(jPro_nome.getText());
-            obj.setPro_categoria(jPro_categoria.getSelectedItem().toString());
-            obj.setPro_quantidade(Integer.parseInt(jPro_quantidade.getText()));
-            obj.setPro_preco(Double.parseDouble(jPro_preco.getText()));
+            int codigo = Integer.parseInt(jPro_codigo.getText().trim());
+            obj.setPro_nome(jPro_nome.getText().trim());
+            obj.setPro_categoria(jPro_categoria.getSelectedItem().toString().trim());
+            obj.setPro_quantidade(Integer.parseInt(jPro_quantidade.getText().trim()));
+            obj.setPro_preco(Double.parseDouble(jPro_preco.getText().trim()));
 
             // instancia o DAO e faz executa o metodo de cadastro dos produtos
             ProdutoDAO dao = new ProdutoDAO();
@@ -487,42 +489,41 @@ public final class ViewProdutos extends javax.swing.JFrame {
 
     private void jBPro_pesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPro_pesquisarActionPerformed
         // TODO add your handling code here:
-            String nome = jPro_pesquisar.getText() + "%";
-            ProdutoDAO dao = new ProdutoDAO();
-            List<Produto> lista = dao.pesquisarProNome(nome);
-            DefaultTableModel dados = (DefaultTableModel) jPro_tabela.getModel();
-            dados.setNumRows(0);
-            
-            for (Produto p : lista) {
-                System.out.println(p.getPro_nome());
-                dados.addRow(new Object[]{
-                    p.getId_produto(),
-                    p.getPro_nome(),
-                    p.getPro_categoria(),
-                    p.getPro_quantidade(),
-                    p.getPro_preco()
-                });
-            }
-        
+        String nome = jPro_pesquisar.getText().trim() + "%";
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> lista = dao.pesquisarProNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) jPro_tabela.getModel();
+        dados.setNumRows(0);
+
+        for (Produto p : lista) {
+            dados.addRow(new Object[]{
+                p.getId_produto(),
+                p.getPro_nome(),
+                p.getPro_categoria(),
+                p.getPro_quantidade(),
+                p.getPro_preco()
+            });
+        }
+
     }//GEN-LAST:event_jBPro_pesquisarActionPerformed
 
     private void jPro_pesquisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPro_pesquisarKeyTyped
         // TODO add your handling code here:
-                    String nome = jPro_pesquisar.getText() + "%";
-            ProdutoDAO dao = new ProdutoDAO();
-            List<Produto> lista = dao.pesquisarProNome(nome);
-            DefaultTableModel dados = (DefaultTableModel) jPro_tabela.getModel();
-            dados.setNumRows(0);
-            
-            for (Produto p : lista) {
-                dados.addRow(new Object[]{
-                    p.getId_produto(),
-                    p.getPro_nome(),
-                    p.getPro_categoria(),
-                    p.getPro_quantidade(),
-                    p.getPro_preco()
-                });
-            }
+        String nome = jPro_pesquisar.getText().trim() + "%";
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> lista = dao.pesquisarProNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) jPro_tabela.getModel();
+        dados.setNumRows(0);
+
+        for (Produto p : lista) {
+            dados.addRow(new Object[]{
+                p.getId_produto(),
+                p.getPro_nome(),
+                p.getPro_categoria(),
+                p.getPro_quantidade(),
+                p.getPro_preco()
+            });
+        }
     }//GEN-LAST:event_jPro_pesquisarKeyTyped
 
     private void jTF_catActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTF_catActionPerformed
@@ -531,12 +532,16 @@ public final class ViewProdutos extends javax.swing.JFrame {
 
     private void jBtn_cat_salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_cat_salvarActionPerformed
         // TODO add your handling code here:
-        Categoria obj = new Categoria();
-        obj.setNome(jTF_cat.getText());
-        
-        CategoriaDAO dao = new CategoriaDAO();
-        dao.cadastrarCategoria(obj);
-        listarCategorias();
+
+        if (jTF_cat.getText() != null) {
+            Categoria obj = new Categoria();
+            obj.setNome(jTF_cat.getText().trim());
+            CategoriaDAO dao = new CategoriaDAO();
+            dao.cadastrarCategoria(obj);
+            listarCategorias();
+        }else{
+            JOptionPane.showMessageDialog(this, "Preencha o Campo corretamente");
+        }
         jTF_cat.setText("");
     }//GEN-LAST:event_jBtn_cat_salvarActionPerformed
 

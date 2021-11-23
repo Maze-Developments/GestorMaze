@@ -34,7 +34,7 @@ public class CategoriaDAO {
             
             if (rs.next()) {
                 if (obj.getNome().equals(rs.getString("cat_nome"))) {
-                    JOptionPane.showMessageDialog(null, "O Produto já " + obj.getNome() + " Existe.");
+                    JOptionPane.showMessageDialog(null, "A categoria já " + obj.getNome() + " Existe.");
 
                 }
             } else {

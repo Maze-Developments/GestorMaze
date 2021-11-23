@@ -24,19 +24,22 @@ public final class ViewRelatorios extends javax.swing.JFrame {
     /**
      * Creates new form ViewRelatorios
      */
-    public void listarVendas() {
-        VendaDAO dao = new VendaDAO();
-        List<Vendas> lista = dao.listarVendas();
-        DefaultTableModel dados = (DefaultTableModel) jTable_rel.getModel();
-        dados.setNumRows(0);
+    ViewRelDatas v = null;
 
-        for (Vendas v : lista) {
-            dados.addRow(new Object[]{
-                v.getVd_data(),
-                v.getId()
-            });
-        }
-    }
+//    public void listarVendas() {
+//        VendaDAO dao = new VendaDAO();
+//        List<Vendas> lista = dao.listarVendas();
+//        DefaultTableModel dados = (DefaultTableModel) jTable_rel.getModel();
+//        dados.setNumRows(0);
+//
+//        for (Vendas v : lista) {
+//            dados.addRow(new Object[]{
+//                v.getVd_data(),
+//                v.getId(),
+//                v.getVd_total()
+//            });
+//        }
+//    }
 
     public ViewRelatorios() {
         initComponents();
@@ -44,9 +47,11 @@ public final class ViewRelatorios extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setIconImage();
     }
-        public void setIconImage(){
-    setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-}
+
+    public void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,14 +85,14 @@ public final class ViewRelatorios extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data", "Nr do Relatorio"
+                "Data", "Nr", "Total"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -189,7 +194,8 @@ public final class ViewRelatorios extends javax.swing.JFrame {
                 for (Vendas v : lista) {
                     dados.addRow(new Object[]{
                         v.getVd_data(),
-                        v.getId()
+                        v.getId(),
+                        v.getVd_total()
                     });
                 }
             } else {
@@ -207,7 +213,9 @@ public final class ViewRelatorios extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        ViewRelDatas v = new ViewRelDatas();
+        if (rootPaneCheckingEnabled) {
+            v = new ViewRelDatas();
+        }
         v.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

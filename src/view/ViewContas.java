@@ -16,7 +16,6 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Funcionario;
 import model.ItensVenda;
 import model.Mesa;
 import model.Produto;
@@ -638,10 +637,10 @@ public final class ViewContas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
         } else {
             if (nome != null && jTF_quantidade_req.getText() != null) {
-                int quantidade = Integer.valueOf(jTF_quantidade_req.getText());
-                int estoque = Integer.valueOf(jTF_estoque_pro.getText());
-                preco = Double.valueOf(jTF_preco_pro.getText());
-                qtd = Integer.valueOf(jTF_quantidade_req.getText());
+                int quantidade = Integer.valueOf(jTF_quantidade_req.getText().trim());
+                int estoque = Integer.valueOf(jTF_estoque_pro.getText().trim());
+                preco = Double.valueOf(jTF_preco_pro.getText().trim());
+                qtd = Integer.valueOf(jTF_quantidade_req.getText().trim());
                 subtotal = preco * qtd;
                 int baixaestoque = estoque - quantidade;
 
@@ -650,12 +649,12 @@ public final class ViewContas extends javax.swing.JFrame {
                     Produto p = new Produto();
                     Mesa m = new Mesa();
 
-                    p.setId_produto(Integer.valueOf(jTF_codigo_pro.getText()));
-                    m.setMsa_id(Integer.valueOf(jTF_ms_codigo.getText()));
+                    p.setId_produto(Integer.valueOf(jTF_codigo_pro.getText().trim()));
+                    m.setMsa_id(Integer.valueOf(jTF_ms_codigo.getText().trim()));
                     iv.setProduto(p);
                     iv.setMesas(m);
-                    iv.setQuantidade(Integer.valueOf(jTF_quantidade_req.getText()));
-                    iv.setPreco(Double.valueOf(jTF_preco_pro.getText()));
+                    iv.setQuantidade(Integer.valueOf(jTF_quantidade_req.getText().trim()));
+                    iv.setPreco(Double.valueOf(jTF_preco_pro.getText().trim()));
                     iv.setSubtotal(subtotal);
                     iv.setData(dat);
                     p.setPro_quantidade(baixaestoque);
@@ -665,7 +664,7 @@ public final class ViewContas extends javax.swing.JFrame {
 
                     ivdao.cadastrarItensVenda(iv);
 
-                    dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText()));
+                    dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText().trim()));
                     DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
                     dados.setNumRows(0);
                     listar();
@@ -805,8 +804,6 @@ public final class ViewContas extends javax.swing.JFrame {
             int qtd = (int) jTable_contas.getValueAt(linha, 3);
 
             pdao.nomeProdutoQtd(nome, qtd);
-
-//            pdao.altaEstoque(p);
             obj.setId(codigo);
             dao.excluirItenVenda(obj);
 
