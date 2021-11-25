@@ -74,11 +74,8 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="Lbl_func_nome" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jBtn_Habilitar" min="-2" pref="149" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
@@ -250,8 +247,6 @@
                                       <Component id="jBtn_imprimir_con" min="-2" pref="43" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                                       <Component id="jBtn_void" min="-2" pref="43" max="-2" attributes="0"/>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jBtn_Habilitar" min="-2" pref="43" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="Lbl_func_nome" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -609,20 +604,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nome do Funcionario"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jBtn_Habilitar">
-              <Properties>
-                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
-                </Property>
-                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                  <Font name="Trebuchet MS" size="18" style="0"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Nova"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtn_HabilitarActionPerformed"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -54,9 +54,11 @@ public class ItensVendaDAO {
 
     public void cadastrarItensVenda(ItensVenda obj) {
         try {
-            String sqli = "SELECT * FROM contas WHERE fk_mesa = " + obj.getMesas().getMsa_id() + " AND inativo = " + 0;
+            System.out.println("KKKKK" + obj.getData());
+            String sqli = "SELECT * FROM contas WHERE fk_mesa = " + obj.getMesas().getMsa_id() + 
+                    " AND inativo = " + 0 + " AND con_pro_data = '"+obj.getData()+"'";
             PreparedStatement stmtt = conexao.prepareStatement(sqli);
-
+       
             ResultSet rss = stmtt.executeQuery();
             int negacao = 2;
 
@@ -70,12 +72,13 @@ public class ItensVendaDAO {
                             int qut = bqtd + obj.getQuantidade();
                             double sub = qut * bpreco;
 
-                            String update = "update contas set con_pro_qut= ?, con_pro_sub = ? where fk_produto =? and fk_mesa=?";
+                            String update = "update contas set con_pro_qut= ?, con_pro_sub = ? where fk_produto =? and fk_mesa=? and con_pro_data ='"+obj.getData()+"'";
                             PreparedStatement stmtu = conexao.prepareStatement(update);
                             stmtu.setInt(1, qut);
                             stmtu.setDouble(2, sub);
                             stmtu.setInt(3, obj.getProduto().getId_produto());
                             stmtu.setInt(4, obj.getMesas().getMsa_id());
+//                            stmtu.setString(5, obj.getData());
 
                             stmtu.execute();
                             stmtu.close();
@@ -85,8 +88,10 @@ public class ItensVendaDAO {
                 }while (rss.next());
                 stmtt.close();
                 
-                if (negacao ==2) {
 
+            }
+                if (negacao ==2) {
+                    System.out.println("KKKKK++++++++++++++++++++++++");
                     String sql = "insert into contas (fk_produto, fk_mesa, con_pro_qut, con_pro_preco, con_pro_sub, con_pro_data) "
                             + "values(?,?,?,?,?,?)";
                     PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -100,8 +105,6 @@ public class ItensVendaDAO {
                     stmt.execute();
                     stmt.close();
                 }
-
-            }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872 293 580");
         }

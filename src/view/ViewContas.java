@@ -154,7 +154,6 @@ public final class ViewContas extends javax.swing.JFrame {
         jTF_ms_codigo = new javax.swing.JTextField();
         jBtn_void = new javax.swing.JButton();
         Lbl_func_nome = new javax.swing.JLabel();
-        jBtn_Habilitar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_vendas = new javax.swing.JTable();
@@ -353,15 +352,6 @@ public final class ViewContas extends javax.swing.JFrame {
         Lbl_func_nome.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         Lbl_func_nome.setText("Nome do Funcionario");
 
-        jBtn_Habilitar.setBackground(new java.awt.Color(255, 255, 255));
-        jBtn_Habilitar.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
-        jBtn_Habilitar.setText("Nova");
-        jBtn_Habilitar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_HabilitarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -379,10 +369,8 @@ public final class ViewContas extends javax.swing.JFrame {
                             .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Lbl_func_nome))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBtn_Habilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(Lbl_func_nome)))
+                .addGap(1, 1, 1)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -513,8 +501,6 @@ public final class ViewContas extends javax.swing.JFrame {
                                 .addComponent(jBtn_imprimir_con, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBtn_Habilitar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Lbl_func_nome)))))
                 .addContainerGap())
@@ -637,10 +623,10 @@ public final class ViewContas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
         } else {
             if (nome != null && jTF_quantidade_req.getText() != null) {
-                int quantidade = Integer.valueOf(jTF_quantidade_req.getText().trim());
-                int estoque = Integer.valueOf(jTF_estoque_pro.getText().trim());
-                preco = Double.valueOf(jTF_preco_pro.getText().trim());
-                qtd = Integer.valueOf(jTF_quantidade_req.getText().trim());
+                int quantidade = Integer.valueOf(jTF_quantidade_req.getText());
+                int estoque = Integer.valueOf(jTF_estoque_pro.getText());
+                preco = Double.valueOf(jTF_preco_pro.getText());
+                qtd = Integer.valueOf(jTF_quantidade_req.getText());
                 subtotal = preco * qtd;
                 int baixaestoque = estoque - quantidade;
 
@@ -649,12 +635,12 @@ public final class ViewContas extends javax.swing.JFrame {
                     Produto p = new Produto();
                     Mesa m = new Mesa();
 
-                    p.setId_produto(Integer.valueOf(jTF_codigo_pro.getText().trim()));
-                    m.setMsa_id(Integer.valueOf(jTF_ms_codigo.getText().trim()));
+                    p.setId_produto(Integer.valueOf(jTF_codigo_pro.getText()));
+                    m.setMsa_id(Integer.valueOf(jTF_ms_codigo.getText()));
                     iv.setProduto(p);
                     iv.setMesas(m);
-                    iv.setQuantidade(Integer.valueOf(jTF_quantidade_req.getText().trim()));
-                    iv.setPreco(Double.valueOf(jTF_preco_pro.getText().trim()));
+                    iv.setQuantidade(Integer.valueOf(jTF_quantidade_req.getText()));
+                    iv.setPreco(Double.valueOf(jTF_preco_pro.getText()));
                     iv.setSubtotal(subtotal);
                     iv.setData(dat);
                     p.setPro_quantidade(baixaestoque);
@@ -664,7 +650,7 @@ public final class ViewContas extends javax.swing.JFrame {
 
                     ivdao.cadastrarItensVenda(iv);
 
-                    dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText().trim()));
+                    dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText()));
                     DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
                     dados.setNumRows(0);
                     listar();
@@ -778,7 +764,6 @@ public final class ViewContas extends javax.swing.JFrame {
 
     private void jBtn_imprimir_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_imprimir_conActionPerformed
         // TODO add your handling code here:
-        jBtn_imprimir_con.setEnabled(false);
         Date data = new Date();
         SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
         String dat = dataSql.format(data);
@@ -901,11 +886,6 @@ public final class ViewContas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jComb_mesaActionPerformed
 
-    private void jBtn_HabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_HabilitarActionPerformed
-        // TODO add your handling code here:
-        jBtn_imprimir_con.setEnabled(true);
-    }//GEN-LAST:event_jBtn_HabilitarActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -944,7 +924,6 @@ public final class ViewContas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Lbl_func_nome;
     private javax.swing.JButton jBtn_Fechar_conta;
-    private javax.swing.JButton jBtn_Habilitar;
     private javax.swing.JButton jBtn_adicionarcon;
     private javax.swing.JButton jBtn_imprimir_con;
     private javax.swing.JButton jBtn_novacon;
