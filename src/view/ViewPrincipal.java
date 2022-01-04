@@ -5,7 +5,6 @@
  */
 package view;
 
-import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -75,6 +74,8 @@ public class ViewPrincipal extends javax.swing.JFrame {
                 formWindowActivated(evt);
             }
         });
+
+        uJPanelImagem9.setBackground(new java.awt.Color(0, 153, 153));
 
         jBtn_contas.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_contas.setFont(new java.awt.Font("Vodafone ExB", 0, 18)); // NOI18N
@@ -247,7 +248,9 @@ public class ViewPrincipal extends javax.swing.JFrame {
             contas = new ViewContas();
         }
         contas.admin = admin;
+        contas.nomeFuncionario(jLbl_nome.getText());
         contas.setVisible(true);
+        
     }//GEN-LAST:event_jBtn_contasActionPerformed
 
     private void jBtn_relatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_relatoriosActionPerformed

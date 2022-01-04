@@ -18,7 +18,7 @@ import model.Mesa;
  *
  * @author Klayton Massango
  * @since 20 de Setembro de 2021
- * @version 0.0.1
+ * @version 0.3.0
  * @see Maze Development
  */
 public final class ViewAdministrador extends javax.swing.JFrame {
@@ -88,6 +88,14 @@ public final class ViewAdministrador extends javax.swing.JFrame {
 
         jComboBox1 = new javax.swing.JComboBox<>();
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable_mesas = new javax.swing.JTable();
+        jTF_Mesa = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jBtn_cli_cadastrar = new javax.swing.JButton();
+        jBtn_cli_excluir = new javax.swing.JButton();
+        jBtn_Relatorio = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable_funcionarios = new javax.swing.JTable();
@@ -106,14 +114,6 @@ public final class ViewAdministrador extends javax.swing.JFrame {
         jTF_fun_usuario = new javax.swing.JTextField();
         jCbx_nivel_acesso = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable_mesas = new javax.swing.JTable();
-        jTF_Mesa = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        jBtn_cli_cadastrar = new javax.swing.JButton();
-        jBtn_cli_excluir = new javax.swing.JButton();
-        jBtn_Relatorio = new javax.swing.JButton();
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -126,6 +126,94 @@ public final class ViewAdministrador extends javax.swing.JFrame {
         });
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jTable_mesas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Codigo", "Nome"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(jTable_mesas);
+
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        jLabel7.setText("Nome");
+
+        jBtn_cli_cadastrar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jBtn_cli_cadastrar.setText("Cadastrar");
+        jBtn_cli_cadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_cli_cadastrarActionPerformed(evt);
+            }
+        });
+
+        jBtn_cli_excluir.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jBtn_cli_excluir.setText("Excluir");
+        jBtn_cli_excluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_cli_excluirActionPerformed(evt);
+            }
+        });
+
+        jBtn_Relatorio.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jBtn_Relatorio.setText("Relatorios");
+        jBtn_Relatorio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_RelatorioActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jBtn_cli_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(jTF_Mesa)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtn_cli_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtn_Relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTF_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtn_Relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBtn_cli_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtn_cli_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Mesas", jPanel1);
 
         jTable_funcionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -170,10 +258,10 @@ public final class ViewAdministrador extends javax.swing.JFrame {
         });
 
         jTF_fun_nome_.addInputMethodListener(new java.awt.event.InputMethodListener() {
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
-            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTF_fun_nome_InputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTF_fun_nome_.addActionListener(new java.awt.event.ActionListener() {
@@ -283,94 +371,6 @@ public final class ViewAdministrador extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Funcionarios", jPanel2);
-
-        jTable_mesas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Codigo", "Nome"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable_mesas);
-
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        jLabel7.setText("Nome");
-
-        jBtn_cli_cadastrar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jBtn_cli_cadastrar.setText("Cadastrar");
-        jBtn_cli_cadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_cli_cadastrarActionPerformed(evt);
-            }
-        });
-
-        jBtn_cli_excluir.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jBtn_cli_excluir.setText("Excluir");
-        jBtn_cli_excluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_cli_excluirActionPerformed(evt);
-            }
-        });
-
-        jBtn_Relatorio.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jBtn_Relatorio.setText("Relatorios");
-        jBtn_Relatorio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_RelatorioActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jBtn_cli_cadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
-                    .addComponent(jTF_Mesa)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtn_cli_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtn_Relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_Mesa, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtn_Relatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBtn_cli_cadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtn_cli_excluir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Mesas", jPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

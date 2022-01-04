@@ -1,0 +1,2 @@
+* Acréscimo da coluna "metodo" na tabela de conas
+* Acréscimo da coluna "funcionario" na tabela de contas

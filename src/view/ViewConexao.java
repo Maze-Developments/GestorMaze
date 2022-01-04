@@ -545,6 +545,8 @@ public class ViewConexao extends javax.swing.JFrame {
                 + "con_pro_sub DOUBLE NOT NULL , "
                 + "con_pro_data DATE NOT NULL , "
                 + "inativo TINYINT DEFAULT '0' , "
+                + "metodo VARCHAR(50) DEFAULT 'Indefinido' , "
+                + "funcionario VARCHAR(100) DEFAULT 'desconhecido' , "
                 + "PRIMARY KEY (id_conta), "
                 + "FOREIGN KEY (fk_produto) REFERENCES produtos(id_produto) ON DELETE RESTRICT,"
                 + "FOREIGN KEY (fk_mesa) REFERENCES mesas(id_mesa) ON DELETE RESTRICT)";

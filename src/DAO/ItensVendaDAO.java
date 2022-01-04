@@ -52,9 +52,8 @@ public class ItensVendaDAO {
         return bool;
     }
 
-    public void cadastrarItensVenda(ItensVenda obj) {
+    public void cadastrarItensVenda(ItensVenda obj, String nome) {
         try {
-            System.out.println("KKKKK" + obj.getData());
             String sqli = "SELECT * FROM contas WHERE fk_mesa = " + obj.getMesas().getMsa_id() + 
                     " AND inativo = " + 0 + " AND con_pro_data = '"+obj.getData()+"'";
             PreparedStatement stmtt = conexao.prepareStatement(sqli);
@@ -78,7 +77,6 @@ public class ItensVendaDAO {
                             stmtu.setDouble(2, sub);
                             stmtu.setInt(3, obj.getProduto().getId_produto());
                             stmtu.setInt(4, obj.getMesas().getMsa_id());
-//                            stmtu.setString(5, obj.getData());
 
                             stmtu.execute();
                             stmtu.close();
@@ -91,9 +89,8 @@ public class ItensVendaDAO {
 
             }
                 if (negacao ==2) {
-                    System.out.println("KKKKK++++++++++++++++++++++++");
-                    String sql = "insert into contas (fk_produto, fk_mesa, con_pro_qut, con_pro_preco, con_pro_sub, con_pro_data) "
-                            + "values(?,?,?,?,?,?)";
+                    String sql = "insert into contas (fk_produto, fk_mesa, con_pro_qut, con_pro_preco, con_pro_sub, con_pro_data, funcionario) "
+                            + "values(?,?,?,?,?,?,?)";
                     PreparedStatement stmt = conexao.prepareStatement(sql);
                     stmt.setInt(1, obj.getProduto().getId_produto());
                     stmt.setInt(2, obj.getMesas().getMsa_id());
@@ -101,6 +98,7 @@ public class ItensVendaDAO {
                     stmt.setDouble(4, obj.getPreco());
                     stmt.setDouble(5, obj.getSubtotal());
                     stmt.setString(6, obj.getData());
+                    stmt.setString(7, nome);
 
                     stmt.execute();
                     stmt.close();
@@ -202,7 +200,7 @@ public class ItensVendaDAO {
     public void imprimirConta(int mesa, String data) {
         try {
 
-            String sql = "select c.id_conta, produtos.pro_nome, mesas.ms_nome, c.con_pro_qut, c.con_pro_preco, c.con_pro_sub, c.inativo from contas as c "
+            String sql = "select c.id_conta, produtos.pro_nome, mesas.ms_nome, c.con_pro_qut, c.con_pro_preco, c.con_pro_sub, c.inativo, c.funcionario from contas as c "
                     + "inner join produtos on(c.fk_produto=produtos.id_produto) "
                     + "inner join mesas on(c.fk_mesa=mesas.id_mesa) where c.fk_mesa=" + mesa + " and con_pro_data='" + data + "' and inativo=" + 0;
             PreparedStatement stmt = conexao.prepareStatement(sql);
@@ -217,12 +215,14 @@ public class ItensVendaDAO {
         }
     }
 
-    public void finalizarConta(int mesa, String data) {
+    public void finalizarConta(int mesa, String data, String metodo, String nomeFuncionario) {
         try {
-            String sql = "update contas set inativo = " + 1 + " where fk_mesa =? and con_pro_data = ? and inativo =0";
+            String sql = "update contas set inativo = " + 1 + ", metodo = ?, funcionario = ? where fk_mesa =? and con_pro_data = ? and inativo =0";
             PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setInt(1, mesa);
-            stmt.setString(2, data);
+            stmt.setString(1, metodo);
+            stmt.setString(2, nomeFuncionario);
+            stmt.setInt(3, mesa);
+            stmt.setString(4, data);
 
             stmt.execute();
             stmt.close();

@@ -26,12 +26,12 @@ public class ViewRelDatas extends javax.swing.JFrame {
      */
     public ViewRelDatas() {
         initComponents();
-        setLocationRelativeTo(null);
         setIconImage();
+        setLocationRelativeTo(null);
     }
-        public void setIconImage(){
-    setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
-}
+      public void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,18 +41,31 @@ public class ViewRelDatas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        gp_pagamento = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jTF_pesquisar_inicial = new javax.swing.JFormattedTextField();
         jTF_pesquisar_final = new javax.swing.JFormattedTextField();
         jBtn_Imprimir = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jRbtn_dinheiro = new javax.swing.JRadioButton();
+        jRbtn_mpesa = new javax.swing.JRadioButton();
+        jRbtn_cartao = new javax.swing.JRadioButton();
+        jRbtn_contamovel = new javax.swing.JRadioButton();
+        jRbtn_indefinido = new javax.swing.JRadioButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jTF_pesquisar_inicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
+        jTF_pesquisar_inicial.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTF_pesquisar_inicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
+        jTF_pesquisar_inicial.setName(""); // NOI18N
+
+        jTF_pesquisar_final.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTF_pesquisar_final.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
 
         jBtn_Imprimir.setBackground(new java.awt.Color(255, 255, 255));
@@ -65,46 +78,117 @@ public class ViewRelDatas extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Data inicial");
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Data Final");
+
+        jRbtn_dinheiro.setBackground(new java.awt.Color(0, 153, 153));
+        gp_pagamento.add(jRbtn_dinheiro);
+        jRbtn_dinheiro.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jRbtn_dinheiro.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtn_dinheiro.setText("Dinheiro");
+        jRbtn_dinheiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRbtn_dinheiroActionPerformed(evt);
+            }
+        });
+
+        jRbtn_mpesa.setBackground(new java.awt.Color(0, 153, 153));
+        gp_pagamento.add(jRbtn_mpesa);
+        jRbtn_mpesa.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jRbtn_mpesa.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtn_mpesa.setText("M- Pesa");
+
+        jRbtn_cartao.setBackground(new java.awt.Color(0, 153, 153));
+        gp_pagamento.add(jRbtn_cartao);
+        jRbtn_cartao.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jRbtn_cartao.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtn_cartao.setText("Cartão");
+
+        jRbtn_contamovel.setBackground(new java.awt.Color(0, 153, 153));
+        gp_pagamento.add(jRbtn_contamovel);
+        jRbtn_contamovel.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jRbtn_contamovel.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtn_contamovel.setText("Conta Movel");
+
+        jRbtn_indefinido.setBackground(new java.awt.Color(0, 153, 153));
+        gp_pagamento.add(jRbtn_indefinido);
+        jRbtn_indefinido.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
+        jRbtn_indefinido.setForeground(new java.awt.Color(255, 255, 255));
+        jRbtn_indefinido.setSelected(true);
+        jRbtn_indefinido.setText("Indefinido");
+
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("FILTAR RELÁTORIO");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jTF_pesquisar_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTF_pesquisar_final)
-                            .addComponent(jLabel2)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jBtn_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(109, 109, 109)))
-                .addGap(20, 20, 20))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jTF_pesquisar_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTF_pesquisar_final)
+                                    .addComponent(jLabel2)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBtn_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(109, 109, 109)))
+                        .addGap(20, 20, 20))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jRbtn_indefinido)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRbtn_dinheiro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRbtn_mpesa)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRbtn_cartao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRbtn_contamovel)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(36, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRbtn_dinheiro)
+                    .addComponent(jRbtn_mpesa)
+                    .addComponent(jRbtn_cartao)
+                    .addComponent(jRbtn_contamovel)
+                    .addComponent(jRbtn_indefinido))
+                .addGap(1, 1, 1)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTF_pesquisar_inicial, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTF_pesquisar_final, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTF_pesquisar_final)
+                    .addComponent(jTF_pesquisar_inicial, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jBtn_Imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,7 +199,7 @@ public class ViewRelDatas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -124,13 +208,34 @@ public class ViewRelDatas extends javax.swing.JFrame {
     private void jBtn_ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_ImprimirActionPerformed
         // TODO add your handling code here:
         try {
+            String metodo = "";
+        
+        if (jRbtn_indefinido.isSelected()) {
+            metodo = "Indefinido"; 
+        }
+        if (jRbtn_dinheiro.isSelected()) {
+            metodo = "Dinheiro"; 
+        }
+        if (jRbtn_mpesa.isSelected()) {
+            metodo = "M-Pesa";
+        }
+        if (jRbtn_cartao.isSelected()) {
+            metodo = "Cartao";
+        }
+        if (jRbtn_dinheiro.isSelected()) {
+            metodo = "Dinheiro";
+        }
+        if (jRbtn_contamovel.isSelected()) {
+            metodo = "Conta Movel";
+        }
+            
             DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy");
             LocalDate datai = LocalDate.parse(jTF_pesquisar_inicial.getText(), formato);
             LocalDate dataf = LocalDate.parse(jTF_pesquisar_final.getText(), formato);
 
             if (datai != null && dataf != null) {
                 VendaDAO dao = new VendaDAO();
-                dao.imprimirRelatorio(String.valueOf(datai), String.valueOf(dataf));
+                dao.imprimirRelatorio(String.valueOf(datai), String.valueOf(dataf),metodo);
             } else {
                 JOptionPane.showMessageDialog(this, "Pesquisa Invalida!");
             }
@@ -138,6 +243,10 @@ public class ViewRelDatas extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, e);
         }
     }//GEN-LAST:event_jBtn_ImprimirActionPerformed
+
+    private void jRbtn_dinheiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRbtn_dinheiroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRbtn_dinheiroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,10 +284,18 @@ public class ViewRelDatas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup gp_pagamento;
     private javax.swing.JButton jBtn_Imprimir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JRadioButton jRbtn_cartao;
+    private javax.swing.JRadioButton jRbtn_contamovel;
+    private javax.swing.JRadioButton jRbtn_dinheiro;
+    private javax.swing.JRadioButton jRbtn_indefinido;
+    private javax.swing.JRadioButton jRbtn_mpesa;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JFormattedTextField jTF_pesquisar_final;
     private javax.swing.JFormattedTextField jTF_pesquisar_inicial;
     // End of variables declaration//GEN-END:variables

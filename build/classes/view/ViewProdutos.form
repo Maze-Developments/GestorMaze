@@ -77,12 +77,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtn_editar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jBtn_excluir" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jBtn_novo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBPro_salvar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="142" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jBtn_excluir" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="196" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jTF_cat" min="-2" pref="131" max="-2" attributes="0"/>
@@ -144,15 +144,17 @@
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jBPro_salvar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBtn_novo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBtn_excluir" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jBtn_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jBtn_editar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jBtn_excluir" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jBtn_novo" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jBPro_salvar" alignment="1" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jScrollPane1" pref="369" max="32767" attributes="0"/>
@@ -301,6 +303,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jPro_pesquisar">
       <Events>
+        <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jPro_pesquisarFocusGained"/>
         <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jPro_pesquisarKeyTyped"/>
       </Events>
     </Component>
@@ -329,7 +332,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagens/icons/excluir.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cancelar"/>
+        <Property name="text" type="java.lang.String" value="Sair"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
@@ -343,10 +346,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Trebuchet MS" size="12" style="1"/>
         </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/icons/excluir_1.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Apagar"/>
+        <Property name="text" type="java.lang.String" value="Relatorio"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtn_excluirActionPerformed"/>

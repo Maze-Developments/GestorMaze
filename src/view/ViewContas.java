@@ -111,7 +111,9 @@ public final class ViewContas extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
-
+    public void setIconImage() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -153,7 +155,7 @@ public final class ViewContas extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jTF_ms_codigo = new javax.swing.JTextField();
         jBtn_void = new javax.swing.JButton();
-        Lbl_func_nome = new javax.swing.JLabel();
+        jLbl_nomeFuncionario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_vendas = new javax.swing.JTable();
@@ -169,11 +171,14 @@ public final class ViewContas extends javax.swing.JFrame {
             }
         });
 
+        jTP_menu.setBackground(new java.awt.Color(0, 153, 153));
         jTP_menu.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTP_menuFocusGained(evt);
             }
         });
+
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel3.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabel3.setText("Pesquisar Produto");
@@ -187,6 +192,7 @@ public final class ViewContas extends javax.swing.JFrame {
             }
         });
 
+        jTF_psr_produto.setBorder(null);
         jTF_psr_produto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTF_psr_produtoKeyTyped(evt);
@@ -197,7 +203,9 @@ public final class ViewContas extends javax.swing.JFrame {
         jLabel1.setText("VALOR TOTAL");
 
         jTF_total.setEditable(false);
+        jTF_total.setBackground(new java.awt.Color(255, 255, 255));
         jTF_total.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jTF_total.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         jLabel2.setFont(new java.awt.Font("Trebuchet MS", 0, 24)); // NOI18N
         jLabel2.setText("MT");
@@ -241,7 +249,7 @@ public final class ViewContas extends javax.swing.JFrame {
         });
 
         jTable_contas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jTable_contas.setFont(new java.awt.Font("Trebuchet MS", 0, 11)); // NOI18N
+        jTable_contas.setFont(new java.awt.Font("Trebuchet MS", 1, 11)); // NOI18N
         jTable_contas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -258,6 +266,8 @@ public final class ViewContas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable_contas.setGridColor(new java.awt.Color(0, 153, 153));
+        jTable_contas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable_contas);
         if (jTable_contas.getColumnModel().getColumnCount() > 0) {
             jTable_contas.getColumnModel().getColumn(0).setPreferredWidth(10);
@@ -265,6 +275,7 @@ public final class ViewContas extends javax.swing.JFrame {
             jTable_contas.getColumnModel().getColumn(4).setPreferredWidth(20);
         }
 
+        jTable_con_produtos.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jTable_con_produtos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -288,6 +299,7 @@ public final class ViewContas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable_con_produtos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTable_con_produtos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_con_produtosMouseClicked(evt);
@@ -302,12 +314,20 @@ public final class ViewContas extends javax.swing.JFrame {
         }
 
         jTF_codigo_pro.setEditable(false);
+        jTF_codigo_pro.setBackground(new java.awt.Color(255, 255, 255));
+        jTF_codigo_pro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTF_produto_pro.setEditable(false);
+        jTF_produto_pro.setBackground(new java.awt.Color(255, 255, 255));
+        jTF_produto_pro.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         jTF_estoque_pro.setEditable(false);
+        jTF_estoque_pro.setBackground(new java.awt.Color(255, 255, 255));
+        jTF_estoque_pro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jTF_preco_pro.setEditable(false);
+        jTF_preco_pro.setBackground(new java.awt.Color(255, 255, 255));
+        jTF_preco_pro.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setText("Código");
 
@@ -332,13 +352,18 @@ public final class ViewContas extends javax.swing.JFrame {
 
         jLabel9.setText("Mesa");
 
+        jTF_quantidade_req.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTF_quantidade_req.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         jTf_data.setEditable(false);
+        jTf_data.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel10.setText("Data");
 
         jTF_ms_codigo.setEditable(false);
+        jTF_ms_codigo.setBackground(new java.awt.Color(0, 153, 153));
+        jTF_ms_codigo.setForeground(new java.awt.Color(0, 153, 153));
+        jTF_ms_codigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 153)));
 
         jBtn_void.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_void.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
@@ -349,8 +374,9 @@ public final class ViewContas extends javax.swing.JFrame {
             }
         });
 
-        Lbl_func_nome.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        Lbl_func_nome.setText("Nome do Funcionario");
+        jLbl_nomeFuncionario.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jLbl_nomeFuncionario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLbl_nomeFuncionario.setText("Nome do Funcionario");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -369,8 +395,7 @@ public final class ViewContas extends javax.swing.JFrame {
                             .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(Lbl_func_nome)))
-                .addGap(1, 1, 1)
+                        .addComponent(jLbl_nomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
@@ -394,7 +419,7 @@ public final class ViewContas extends javax.swing.JFrame {
                                         .addComponent(jComb_mesa, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTF_codigo_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 77, Short.MAX_VALUE)
+                                    .addComponent(jTF_codigo_pro, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                                     .addComponent(jLabel4))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -411,7 +436,7 @@ public final class ViewContas extends javax.swing.JFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel7)
                                                 .addGap(33, 33, 33))
-                                            .addComponent(jTF_preco_pro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
+                                            .addComponent(jTF_preco_pro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel8)
@@ -502,11 +527,13 @@ public final class ViewContas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jBtn_void, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(Lbl_func_nome)))))
+                                .addComponent(jLbl_nomeFuncionario)))))
                 .addContainerGap())
         );
 
         jTP_menu.addTab("Mesas", jPanel1);
+
+        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
 
         jTable_vendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -608,200 +635,6 @@ public final class ViewContas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_formWindowActivated
 
-    private void jBtn_adicionarconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_adicionarconActionPerformed
-        String nome = jTF_produto_pro.getText();
-
-        Date data = new Date();
-        SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
-        String dat = dataSql.format(data);
-        if (jTF_codigo_pro.getText().equals("")
-                && jTF_estoque_pro.getText().equals("")
-                && jTF_preco_pro.getText().equals("")
-                && jTF_produto_pro.getText().equals("")
-                && jTF_quantidade_req.getText().equals("")) {
-
-            JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
-        } else {
-            if (nome != null && jTF_quantidade_req.getText() != null) {
-                int quantidade = Integer.valueOf(jTF_quantidade_req.getText());
-                int estoque = Integer.valueOf(jTF_estoque_pro.getText());
-                preco = Double.valueOf(jTF_preco_pro.getText());
-                qtd = Integer.valueOf(jTF_quantidade_req.getText());
-                subtotal = preco * qtd;
-                int baixaestoque = estoque - quantidade;
-
-                if (quantidade <= estoque && jTF_quantidade_req.getText() != null) {
-                    ItensVenda iv = new ItensVenda();
-                    Produto p = new Produto();
-                    Mesa m = new Mesa();
-
-                    p.setId_produto(Integer.valueOf(jTF_codigo_pro.getText()));
-                    m.setMsa_id(Integer.valueOf(jTF_ms_codigo.getText()));
-                    iv.setProduto(p);
-                    iv.setMesas(m);
-                    iv.setQuantidade(Integer.valueOf(jTF_quantidade_req.getText()));
-                    iv.setPreco(Double.valueOf(jTF_preco_pro.getText()));
-                    iv.setSubtotal(subtotal);
-                    iv.setData(dat);
-                    p.setPro_quantidade(baixaestoque);
-
-                    ItensVendaDAO ivdao = new ItensVendaDAO();
-                    ProdutoDAO dao = new ProdutoDAO();
-
-                    ivdao.cadastrarItensVenda(iv);
-
-                    dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText()));
-                    DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
-                    dados.setNumRows(0);
-                    listar();
-                    jTF_estoque_pro.setText("");
-                    jTF_produto_pro.setText("");
-                    jTF_codigo_pro.setText("");
-                    jTF_produto_pro.setText("");
-                    jTF_preco_pro.setText("");
-
-                    MesaDAO daoo = new MesaDAO();
-                    List<Mesa> lista = daoo.listarMesas();
-                    jTF_quantidade_req.setText("");
-                    listarContas();
-
-                } else {
-                    JOptionPane.showMessageDialog(this, "Quantidade de Estoque indisponível");
-                }
-
-            } else {
-                JOptionPane.showMessageDialog(this, "Selecione o produto!");
-            }
-        }
-    }//GEN-LAST:event_jBtn_adicionarconActionPerformed
-
-    private void jTable_con_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_con_produtosMouseClicked
-        // TODO add your handling code here:
-        int linha = jTable_con_produtos.getSelectedRow();
-
-        if (linha == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione a linha que pretende Editar!");
-        } else {
-
-            // Pega valores da tabela na linha selcionada
-            int codigoProduto = (int) jTable_con_produtos.getValueAt(linha, 0);
-            String nomeProduto = (String) jTable_con_produtos.getValueAt(linha, 1);
-            String categoProduto = (String) jTable_con_produtos.getValueAt(linha, 2);
-            int quantidadeProduto = (int) jTable_con_produtos.getValueAt(linha, 3);
-            double precoProduto = (double) jTable_con_produtos.getValueAt(linha, 4);
-
-            //diciona os valores nos campos
-            jTF_codigo_pro.setText(Integer.toString(codigoProduto));
-            jTF_produto_pro.setText(nomeProduto);
-            jTF_estoque_pro.setText(Integer.toString(quantidadeProduto));
-            jTF_preco_pro.setText(Double.toString(precoProduto));
-
-        }
-
-    }//GEN-LAST:event_jTable_con_produtosMouseClicked
-
-    private void jBtn_psr_prodotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_psr_prodotoActionPerformed
-        // TODO add your handling code here:
-        String nome = jTF_psr_produto.getText() + "%";
-        if (nome != null) {
-            ProdutoDAO dao = new ProdutoDAO();
-            List<Produto> lista = dao.pesquisarProNome(nome);
-            DefaultTableModel dados = (DefaultTableModel) jTable_con_produtos.getModel();
-            dados.setNumRows(0);
-
-            for (Produto p : lista) {
-                dados.addRow(new Object[]{
-                    p.getId_produto(),
-                    p.getPro_nome(),
-                    p.getPro_categoria(),
-                    p.getPro_quantidade(),
-                    p.getPro_preco()
-                });
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Pesquisa Invalida!");
-        }
-    }//GEN-LAST:event_jBtn_psr_prodotoActionPerformed
-
-    private void jTF_psr_produtoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_psr_produtoKeyTyped
-        // TODO add your handling code here:
-
-        String nome = jTF_psr_produto.getText() + "%";
-        ProdutoDAO dao = new ProdutoDAO();
-        List<Produto> lista = dao.pesquisarProNome(nome);
-        DefaultTableModel dados = (DefaultTableModel) jTable_con_produtos.getModel();
-        dados.setNumRows(0);
-
-        for (Produto p : lista) {
-            dados.addRow(new Object[]{
-                p.getId_produto(),
-                p.getPro_nome(),
-                p.getPro_categoria(),
-                p.getPro_quantidade(),
-                p.getPro_preco()
-            });
-        }
-    }//GEN-LAST:event_jTF_psr_produtoKeyTyped
-
-    private void jComb_mesaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComb_mesaItemStateChanged
-        // TODO add your handling code here:
-        try {
-            String nome = jComb_mesa.getSelectedItem().toString();
-            MesaDAO dao = new MesaDAO();
-            Mesa obj = new Mesa();
-            obj.setMsa_nome(nome);
-            dao.pegarIdMesa(obj);
-
-            jTF_ms_codigo.setText(String.valueOf(obj.getMsa_id()));
-            jTF_total.setText("");
-
-            DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
-            dados.setNumRows(0);
-            listarContas();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jComb_mesaItemStateChanged
-
-    private void jBtn_imprimir_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_imprimir_conActionPerformed
-        // TODO add your handling code here:
-        Date data = new Date();
-        SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
-        String dat = dataSql.format(data);
-
-        ItensVendaDAO dao = new ItensVendaDAO();
-        int mesa = Integer.valueOf(jTF_ms_codigo.getText());
-        dao.imprimirConta(mesa, dat);
-
-
-    }//GEN-LAST:event_jBtn_imprimir_conActionPerformed
-
-    private void jBtn_remover_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_remover_conActionPerformed
-        // TODO add your handling code here:
-        try {
-            ItensVenda obj = new ItensVenda();
-            ItensVendaDAO dao = new ItensVendaDAO();
-            Produto p = new Produto();
-            ProdutoDAO pdao = new ProdutoDAO();
-
-            int linha = jTable_contas.getSelectedRow();
-            int codigo = (int) jTable_contas.getValueAt(linha, 0);
-            String nome = (String) jTable_contas.getValueAt(linha, 2);
-            int qtd = (int) jTable_contas.getValueAt(linha, 3);
-
-            pdao.nomeProdutoQtd(nome, qtd);
-            obj.setId(codigo);
-            dao.excluirItenVenda(obj);
-
-            DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
-            dados.setNumRows(0);
-            listarContas();
-            jTF_total.setText("");
-            jTF_estoque_pro.setText("");
-            listar();
-        } catch (Exception e) {
-        }
-    }//GEN-LAST:event_jBtn_remover_conActionPerformed
-
     private void jBtn_Fechar_contaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_Fechar_contaActionPerformed
         // TODO add your handling code here:
 
@@ -837,6 +670,7 @@ public final class ViewContas extends javax.swing.JFrame {
         }
         System.out.println("fim");
         listarVendas();
+        jTF_total_hoje.setText("");
 
     }//GEN-LAST:event_jBtn_Fechar_contaActionPerformed
 
@@ -847,7 +681,7 @@ public final class ViewContas extends javax.swing.JFrame {
         listarVendas();
     }//GEN-LAST:event_jTP_menuFocusGained
 
-    private void jBtn_novaconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_novaconActionPerformed
+    private void jBtn_imprimir_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_imprimir_conActionPerformed
         // TODO add your handling code here:
         Date data = new Date();
         SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
@@ -856,19 +690,42 @@ public final class ViewContas extends javax.swing.JFrame {
         ItensVendaDAO dao = new ItensVendaDAO();
         int mesa = Integer.valueOf(jTF_ms_codigo.getText());
         dao.imprimirConta(mesa, dat);
-        dao.finalizarConta(mesa, dat);
-    }//GEN-LAST:event_jBtn_novaconActionPerformed
+
+    }//GEN-LAST:event_jBtn_imprimir_conActionPerformed
+
+    private void jBtn_psr_prodotoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_psr_prodotoActionPerformed
+        // TODO add your handling code here:
+        String nome = jTF_psr_produto.getText() + "%";
+        if (nome != null) {
+            ProdutoDAO dao = new ProdutoDAO();
+            List<Produto> lista = dao.pesquisarProNome(nome);
+            DefaultTableModel dados = (DefaultTableModel) jTable_con_produtos.getModel();
+            dados.setNumRows(0);
+
+            for (Produto p : lista) {
+                dados.addRow(new Object[]{
+                    p.getId_produto(),
+                    p.getPro_nome(),
+                    p.getPro_categoria(),
+                    p.getPro_quantidade(),
+                    p.getPro_preco()
+                });
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Pesquisa Invalida!");
+        }
+    }//GEN-LAST:event_jBtn_psr_prodotoActionPerformed
 
     private void jBtn_voidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_voidActionPerformed
         // TODO add your handling code here:
 
         /**
-         * Fazer void de produtos Para fazer void do produto é necessario pegar
-         * o id da produto na tabela de contas e alterar o id da mesa na conta
-         * especifica
-         *
-         * @param jTable_contas,
-         */
+        * Fazer void de produtos Para fazer void do produto é necessario pegar
+        * o id da produto na tabela de contas e alterar o id da mesa na conta
+        * especifica
+        *
+        * @param jTable_contas,
+        */
         ItensVendaDAO dao = new ItensVendaDAO();
 
         int linha = jTable_contas.getSelectedRow();
@@ -876,8 +733,31 @@ public final class ViewContas extends javax.swing.JFrame {
 
         dao.voidProduto(codigo);
         listarVendas();
-
     }//GEN-LAST:event_jBtn_voidActionPerformed
+
+    private void jTable_con_produtosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_con_produtosMouseClicked
+        // TODO add your handling code here:
+        int linha = jTable_con_produtos.getSelectedRow();
+
+        if (linha == -1) {
+            JOptionPane.showMessageDialog(null, "Selecione a linha que pretende Editar!");
+        } else {
+
+            // Pega valores da tabela na linha selcionada
+            int codigoProduto = (int) jTable_con_produtos.getValueAt(linha, 0);
+            String nomeProduto = (String) jTable_con_produtos.getValueAt(linha, 1);
+            String categoProduto = (String) jTable_con_produtos.getValueAt(linha, 2);
+            int quantidadeProduto = (int) jTable_con_produtos.getValueAt(linha, 3);
+            double precoProduto = (double) jTable_con_produtos.getValueAt(linha, 4);
+
+            //diciona os valores nos campos
+            jTF_codigo_pro.setText(Integer.toString(codigoProduto));
+            jTF_produto_pro.setText(nomeProduto);
+            jTF_estoque_pro.setText(Integer.toString(quantidadeProduto));
+            jTF_preco_pro.setText(Double.toString(precoProduto));
+
+        }
+    }//GEN-LAST:event_jTable_con_produtosMouseClicked
 
     private void jComb_mesaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComb_mesaActionPerformed
         // TODO add your handling code here:
@@ -885,6 +765,147 @@ public final class ViewContas extends javax.swing.JFrame {
             jTF_ms_codigo.setText(String.valueOf(1));
         }
     }//GEN-LAST:event_jComb_mesaActionPerformed
+
+    private void jComb_mesaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComb_mesaItemStateChanged
+        // TODO add your handling code here:
+        try {
+            String nome = jComb_mesa.getSelectedItem().toString();
+            MesaDAO dao = new MesaDAO();
+            Mesa obj = new Mesa();
+            obj.setMsa_nome(nome);
+            dao.pegarIdMesa(obj);
+
+            jTF_ms_codigo.setText(String.valueOf(obj.getMsa_id()));
+            jTF_total.setText("");
+
+            DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
+            dados.setNumRows(0);
+            listarContas();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jComb_mesaItemStateChanged
+
+    private void jBtn_remover_conActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_remover_conActionPerformed
+        // TODO add your handling code here:
+        try {
+            ItensVenda obj = new ItensVenda();
+            ItensVendaDAO dao = new ItensVendaDAO();
+            Produto p = new Produto();
+            ProdutoDAO pdao = new ProdutoDAO();
+
+            int linha = jTable_contas.getSelectedRow();
+            int codigo = (int) jTable_contas.getValueAt(linha, 0);
+            String nome = (String) jTable_contas.getValueAt(linha, 2);
+            int qtd = (int) jTable_contas.getValueAt(linha, 3);
+
+            pdao.nomeProdutoQtd(nome, qtd);
+            obj.setId(codigo);
+            dao.excluirItenVenda(obj);
+
+            DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
+            dados.setNumRows(0);
+            listarContas();
+            jTF_total.setText("");
+            jTF_estoque_pro.setText("");
+            listar();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jBtn_remover_conActionPerformed
+
+    private void jBtn_adicionarconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_adicionarconActionPerformed
+        String nome = jTF_produto_pro.getText();
+
+        Date data = new Date();
+        SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
+        String dat = dataSql.format(data);
+        if (jTF_codigo_pro.getText().equals("")
+            && jTF_estoque_pro.getText().equals("")
+            && jTF_preco_pro.getText().equals("")
+            && jTF_produto_pro.getText().equals("")
+            && jTF_quantidade_req.getText().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Preencha os campos corretamente!");
+        } else {
+            if (nome != null && jTF_quantidade_req.getText() != null) {
+                int quantidade = Integer.valueOf(jTF_quantidade_req.getText());
+                int estoque = Integer.valueOf(jTF_estoque_pro.getText());
+                preco = Double.valueOf(jTF_preco_pro.getText());
+                qtd = Integer.valueOf(jTF_quantidade_req.getText());
+                subtotal = preco * qtd;
+                int baixaestoque = estoque - quantidade;
+
+                if (quantidade <= estoque && jTF_quantidade_req.getText() != null) {
+                    ItensVenda iv = new ItensVenda();
+                    Produto p = new Produto();
+                    Mesa m = new Mesa();
+
+                    p.setId_produto(Integer.valueOf(jTF_codigo_pro.getText()));
+                    m.setMsa_id(Integer.valueOf(jTF_ms_codigo.getText()));
+                    iv.setProduto(p);
+                    iv.setMesas(m);
+                    iv.setQuantidade(Integer.valueOf(jTF_quantidade_req.getText()));
+                    iv.setPreco(Double.valueOf(jTF_preco_pro.getText()));
+                    iv.setSubtotal(subtotal);
+                    iv.setData(dat);
+                    p.setPro_quantidade(baixaestoque);
+
+                    ItensVendaDAO ivdao = new ItensVendaDAO();
+                    ProdutoDAO dao = new ProdutoDAO();
+
+                    ivdao.cadastrarItensVenda(iv,jLbl_nomeFuncionario.getText());
+
+                    dao.baixaEstoque(p, Integer.valueOf(jTF_codigo_pro.getText()));
+                    DefaultTableModel dados = (DefaultTableModel) jTable_contas.getModel();
+                    dados.setNumRows(0);
+                    listar();
+                    jTF_estoque_pro.setText("");
+                    jTF_produto_pro.setText("");
+                    jTF_codigo_pro.setText("");
+                    jTF_produto_pro.setText("");
+                    jTF_preco_pro.setText("");
+
+                    MesaDAO daoo = new MesaDAO();
+                    List<Mesa> lista = daoo.listarMesas();
+                    jTF_quantidade_req.setText("");
+                    listarContas();
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "Quantidade de Estoque indisponível");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "Selecione o produto!");
+            }
+        }
+    }//GEN-LAST:event_jBtn_adicionarconActionPerformed
+
+    private void jBtn_novaconActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_novaconActionPerformed
+        // TODO add your handling code here:
+        
+            ViewMeioPagamento pg = new ViewMeioPagamento();
+            pg.valorMesa(jTF_ms_codigo.getText(),jLbl_nomeFuncionario.getText());
+            pg.setVisible(true);
+    }//GEN-LAST:event_jBtn_novaconActionPerformed
+
+    private void jTF_psr_produtoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTF_psr_produtoKeyTyped
+        // TODO add your handling code here:
+
+        String nome = jTF_psr_produto.getText() + "%";
+        ProdutoDAO dao = new ProdutoDAO();
+        List<Produto> lista = dao.pesquisarProNome(nome);
+        DefaultTableModel dados = (DefaultTableModel) jTable_con_produtos.getModel();
+        dados.setNumRows(0);
+
+        for (Produto p : lista) {
+            dados.addRow(new Object[]{
+                p.getId_produto(),
+                p.getPro_nome(),
+                p.getPro_categoria(),
+                p.getPro_quantidade(),
+                p.getPro_preco()
+            });
+        }
+    }//GEN-LAST:event_jTF_psr_produtoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -922,7 +943,6 @@ public final class ViewContas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Lbl_func_nome;
     private javax.swing.JButton jBtn_Fechar_conta;
     private javax.swing.JButton jBtn_adicionarcon;
     private javax.swing.JButton jBtn_imprimir_con;
@@ -942,6 +962,7 @@ public final class ViewContas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLbl_nomeFuncionario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -962,7 +983,8 @@ public final class ViewContas extends javax.swing.JFrame {
     private javax.swing.JTable jTable_vendas;
     private javax.swing.JTextField jTf_data;
     // End of variables declaration//GEN-END:variables
-public void setIconImage() {
-        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("icon.png")));
+
+    public void nomeFuncionario(String nome){
+        jLbl_nomeFuncionario.setText(nome);
     }
 }

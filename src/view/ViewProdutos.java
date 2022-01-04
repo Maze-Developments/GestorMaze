@@ -164,6 +164,11 @@ public final class ViewProdutos extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         jLabel6.setText("Pesquisar");
 
+        jPro_pesquisar.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPro_pesquisarFocusGained(evt);
+            }
+        });
         jPro_pesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jPro_pesquisarKeyTyped(evt);
@@ -182,7 +187,7 @@ public final class ViewProdutos extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons/excluir.png"))); // NOI18N
-        jButton2.setText("Cancelar");
+        jButton2.setText("Sair");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -191,8 +196,7 @@ public final class ViewProdutos extends javax.swing.JFrame {
 
         jBtn_excluir.setBackground(new java.awt.Color(255, 255, 255));
         jBtn_excluir.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        jBtn_excluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons/excluir_1.png"))); // NOI18N
-        jBtn_excluir.setText("Apagar");
+        jBtn_excluir.setText("Relatorio");
         jBtn_excluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtn_excluirActionPerformed(evt);
@@ -292,12 +296,12 @@ public final class ViewProdutos extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBtn_editar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtn_excluir)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jBtn_novo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBPro_salvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtn_excluir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTF_cat, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -344,14 +348,15 @@ public final class ViewProdutos extends javax.swing.JFrame {
                             .addComponent(jTF_cat, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBPro_salvar)
-                            .addComponent(jBtn_novo)
-                            .addComponent(jBtn_excluir)
-                            .addComponent(jButton2)
-                            .addComponent(jBtn_editar))
-                        .addGap(14, 14, 14)))
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButton2)
+                                .addComponent(jBtn_editar))
+                            .addComponent(jBtn_excluir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBtn_novo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBPro_salvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(16, 16, 16)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE))
         );
 
@@ -407,19 +412,27 @@ public final class ViewProdutos extends javax.swing.JFrame {
 
     private void jBtn_excluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_excluirActionPerformed
         // TODO add your handling code here:
-        Produto obj = new Produto();
-        int linha = jPro_tabela.getSelectedRow();
-        if (linha == -1) {
-            JOptionPane.showMessageDialog(null, "Selecione a linha que pretende Apagar!");
-        } else {
-
-            int codigoProduto = (int) jPro_tabela.getValueAt(linha, 0);
-
-            obj.setId_produto(codigoProduto);
-            ProdutoDAO dao = new ProdutoDAO();
-            dao.excluirProduto(obj);
-            listar();
-        }
+        
+        ProdutoDAO dao = new ProdutoDAO();
+        
+        dao.imprimirProdutos();
+        
+        /*
+        * @param METODO QUE APAGA PRODUTO NO BANCO DE DADOS
+        */
+//        Produto obj = new Produto();
+//        int linha = jPro_tabela.getSelectedRow();
+//        if (linha == -1) {
+//            JOptionPane.showMessageDialog(null, "Selecione a linha que pretende Apagar!");
+//        } else {
+//
+//            int codigoProduto = (int) jPro_tabela.getValueAt(linha, 0);
+//
+//            obj.setId_produto(codigoProduto);
+//            ProdutoDAO dao = new ProdutoDAO();
+//            dao.excluirProduto(obj);
+//            listar();
+//        }
     }//GEN-LAST:event_jBtn_excluirActionPerformed
 
     private void jBtn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_editarActionPerformed
@@ -544,6 +557,11 @@ public final class ViewProdutos extends javax.swing.JFrame {
         }
         jTF_cat.setText("");
     }//GEN-LAST:event_jBtn_cat_salvarActionPerformed
+
+    private void jPro_pesquisarFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPro_pesquisarFocusGained
+        // TODO add your handling code here:
+        jPro_pesquisar.setText("");
+    }//GEN-LAST:event_jPro_pesquisarFocusGained
 
     // Metodo rque lista os produtos
     /**

@@ -11,9 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.Produto;
+import net.sf.jasperreports.engine.JRResultSetDataSource;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -242,6 +247,23 @@ public class ProdutoDAO {
             stmt.close();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872 293 580");
+        }
+    }
+    
+    
+        public void imprimirProdutos() {
+        try {
+
+            String sql = "select pro_nome, pro_categoria, pro_preco, pro_quantidade from produtos";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            JRResultSetDataSource resultSet = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("iReport/RelatorioProdutos.jasper", new HashMap(), resultSet);
+            JasperViewer jv = new JasperViewer(print, false);
+            jv.setVisible(true);
+
+        } catch (Exception e) {
         }
     }
 }

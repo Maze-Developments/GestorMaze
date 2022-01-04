@@ -98,13 +98,13 @@ public class VendaDAO {
         return null;
     }
     
-        public void imprimirRelatorio(String data, String datafim) {
+        public void imprimirRelatorio(String data, String datafim, String metodo) {
         try {
-            String sql = "select produtos.pro_nome,contas.con_pro_qut, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v "
+            String sql = "select produtos.pro_nome,contas.con_pro_qut, contas.metodo,contas.funcionario, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v "
                     + "inner join contas on(v.fk_conta=contas.id_conta) "
                     + "INNER JOIN produtos ON(contas.fk_produto=produtos.id_produto) "
                     + "inner join mesas on(contas.fk_mesa=mesas.id_mesa) "
-                    + "where v.vd_data between '"+data+"' and '"+datafim+"'";
+                    + "where v.vd_data between '"+data+"' and '"+datafim+"' and contas.metodo = '" + metodo + "'";
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
