@@ -66,7 +66,10 @@
                       <Component id="jLbl_nomeFuncionario" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
-                  <Component id="jBtn_confirmar" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jBtn_confirmar" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLbl_conta" min="-2" pref="51" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -77,7 +80,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jRbtn_dinheiro" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -88,16 +91,18 @@
                               <Component id="jRbtn_cartao" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRbtn_contamovel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jTF_mesa" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLbl_nomeFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                           <Component id="jBtn_confirmar" min="-2" pref="39" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jLbl_conta" min="-2" max="-2" attributes="0"/>
                       </Group>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jTF_mesa" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLbl_nomeFuncionario" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="17" max="32767" attributes="0"/>
               </Group>
@@ -234,6 +239,14 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLbl_nomeFuncionario">
+          <Properties>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="99" green="99" red="0" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Nome do Funcionario"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLbl_conta">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="99" red="0" type="rgb"/>

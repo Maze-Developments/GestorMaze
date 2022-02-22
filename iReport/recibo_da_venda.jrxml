@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="300" pageHeight="700" columnWidth="260" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6117d35-40c6-4d74-b990-6d90db767bbf">
-	<property name="ireport.zoom" value="2.593742460100004"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="372" pageHeight="700" columnWidth="332" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6117d35-40c6-4d74-b990-6d90db767bbf">
+	<property name="ireport.zoom" value="1.2100000000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="49"/>
+	<property name="ireport.y" value="0"/>
 	<queryString>
 		<![CDATA[select c.id_conta, produtos.pro_nome, mesas.ms_nome, c.con_pro_qut, c.con_pro_preco, c.con_pro_sub, c.inativo, c.funcionario from contas as c inner join produtos on(c.fk_produto=produtos.id_produto) inner join mesas on(c.fk_mesa=mesas.id_mesa) where c.fk_mesa=2 and inativo=0;]]>
 	</queryString>

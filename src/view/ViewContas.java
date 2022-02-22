@@ -162,6 +162,7 @@ public final class ViewContas extends javax.swing.JFrame {
         jBtn_Fechar_conta = new javax.swing.JButton();
         jTF_total_hoje = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
+        jBtn_RelatorioDia = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CONTAS E PAGAMENTOS");
@@ -436,7 +437,7 @@ public final class ViewContas extends javax.swing.JFrame {
                                             .addGroup(jPanel1Layout.createSequentialGroup()
                                                 .addComponent(jLabel7)
                                                 .addGap(33, 33, 33))
-                                            .addComponent(jTF_preco_pro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE))
+                                            .addComponent(jTF_preco_pro, javax.swing.GroupLayout.Alignment.TRAILING))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel8)
@@ -569,6 +570,15 @@ public final class ViewContas extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jLabel11.setText("TOTAL DIARIO");
 
+        jBtn_RelatorioDia.setBackground(new java.awt.Color(255, 255, 255));
+        jBtn_RelatorioDia.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
+        jBtn_RelatorioDia.setText("RELATORIO");
+        jBtn_RelatorioDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_RelatorioDiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -577,6 +587,8 @@ public final class ViewContas extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBtn_Fechar_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtn_RelatorioDia, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -588,7 +600,9 @@ public final class ViewContas extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtn_Fechar_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jBtn_Fechar_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBtn_RelatorioDia, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jTF_total_hoje, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel11)))
@@ -907,6 +921,16 @@ public final class ViewContas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTF_psr_produtoKeyTyped
 
+    private void jBtn_RelatorioDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_RelatorioDiaActionPerformed
+        // RELATORIO DIARIO
+        Date data = new Date();
+        SimpleDateFormat dataSql = new SimpleDateFormat("yyyy-MM-dd");
+        String dat = dataSql.format(data);
+        
+        VendaDAO dao = new VendaDAO();
+        dao.imprimirRelatorioDiario(dat);
+    }//GEN-LAST:event_jBtn_RelatorioDiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -944,6 +968,7 @@ public final class ViewContas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtn_Fechar_conta;
+    private javax.swing.JButton jBtn_RelatorioDia;
     private javax.swing.JButton jBtn_adicionarcon;
     private javax.swing.JButton jBtn_imprimir_con;
     private javax.swing.JButton jBtn_novacon;

@@ -15,6 +15,8 @@ import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.ItensVenda;
+import model.Mesa;
+import model.Produto;
 import model.Vendas;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -44,7 +46,7 @@ public class VendaDAO {
             stmt.execute();
             stmt.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872-293-580");
+            JOptionPane.showMessageDialog(null, "Erro: " + e + " Contacte o suporte: (+258)872-293-580");
         }
     }
 
@@ -68,7 +70,7 @@ public class VendaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872-293-580");
+            JOptionPane.showMessageDialog(null, "Erro: " + e + " Contacte o suporte: (+258)872-293-580");
         }
         return null;
     }
@@ -93,23 +95,41 @@ public class VendaDAO {
             return lista;
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e +" Contacte o suporte: (+258)872-293-580");
+            JOptionPane.showMessageDialog(null, "Erro: " + e + " Contacte o suporte: (+258)872-293-580");
         }
         return null;
     }
-    
-        public void imprimirRelatorio(String data, String datafim, String metodo) {
+
+    public void imprimirRelatorio(String data, String datafim, String metodo) {
         try {
             String sql = "select produtos.pro_nome,contas.con_pro_qut, contas.metodo,contas.funcionario, mesas.ms_nome, v.vd_data, v.vd_total from vendas as v "
                     + "inner join contas on(v.fk_conta=contas.id_conta) "
                     + "INNER JOIN produtos ON(contas.fk_produto=produtos.id_produto) "
                     + "inner join mesas on(contas.fk_mesa=mesas.id_mesa) "
-                    + "where v.vd_data between '"+data+"' and '"+datafim+"' and contas.metodo = '" + metodo + "'";
+                    + "where v.vd_data between '" + data + "' and '" + datafim + "' and contas.metodo = '" + metodo + "'";
             PreparedStatement stmt = conexao.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
             JRResultSetDataSource resultSet = new JRResultSetDataSource(rs);
             JasperPrint print = JasperFillManager.fillReport("iReport/RelatorioVendas.jasper", new HashMap(), resultSet);
+            JasperViewer jv = new JasperViewer(print, false);
+            jv.setVisible(true);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+     public void imprimirRelatorioDiario(String data) {
+        try {
+            String sql = "select c.id_conta, c.con_pro_data, produtos.pro_nome,produtos.pro_quantidade, SUM(c.con_pro_qut) AS qut, "
+                    + "SUM(c.con_pro_sub) AS sub, c.inativo from contas as c inner join produtos on(c.fk_produto=produtos.id_produto) "
+                    + "where inativo=2 and c.con_pro_data='"+data+"' GROUP BY produtos.pro_nome;";
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            JRResultSetDataSource resultSet = new JRResultSetDataSource(rs);
+            JasperPrint print = JasperFillManager.fillReport("iReport/relatorio_diario.jasper", new HashMap(), resultSet);
             JasperViewer jv = new JasperViewer(print, false);
             jv.setVisible(true);
 

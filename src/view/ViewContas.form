@@ -133,7 +133,7 @@
                                                       <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Component id="jTF_preco_pro" alignment="1" pref="64" max="32767" attributes="0"/>
+                                                  <Component id="jTF_preco_pro" alignment="1" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace min="-2" max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
@@ -716,6 +716,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jBtn_Fechar_conta" min="-2" pref="198" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jBtn_RelatorioDia" min="-2" pref="198" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -729,7 +731,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jBtn_Fechar_conta" min="-2" pref="41" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jBtn_Fechar_conta" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                              <Component id="jBtn_RelatorioDia" alignment="3" min="-2" pref="41" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jTF_total_hoje" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                               <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -820,6 +825,20 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="TOTAL DIARIO"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jBtn_RelatorioDia">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Trebuchet MS" size="14" style="1"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="RELATORIO"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtn_RelatorioDiaActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Recibo" pageWidth="372" pageHeight="700" columnWidth="332" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d6117d35-40c6-4d74-b990-6d90db767bbf">
+	<property name="ireport.zoom" value="1.2100000000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select c.id_conta, c.con_pro_data, produtos.pro_nome,produtos.pro_quantidade, SUM(c.con_pro_qut) AS qut, SUM(c.con_pro_sub) AS sub, c.inativo from contas as c inner join produtos on(c.fk_produto=produtos.id_produto) where inativo=2 and c.con_pro_data='2022-02-03' GROUP BY produtos.pro_nome;]]>
+	</queryString>
+	<field name="id_conta" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="con_pro_data" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="pro_quantidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="qut" class="java.math.BigDecimal"/>
+	<field name="sub" class="java.lang.Double"/>
+	<field name="inativo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="TOTAL" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{sub}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="82" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="60" width="267" height="20" uuid="b64c3d36-a558-448e-a32b-76b123f6c2d2"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[---------------------------------------------------------------------]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="22" width="186" height="27" uuid="05e00ca1-c475-4f98-a274-ff843bd69ed5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Ebrima" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELATORIO DO DIA]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="27" width="60" height="20" uuid="11486651-622c-4eec-8711-abbaa45f3df1"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<text><![CDATA[Produtos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="27" width="25" height="20" uuid="7a97375c-d38a-4f23-bfe7-df87e1752479"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<text><![CDATA[Saida]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="70" y="27" width="23" height="20" uuid="67b4a8fc-4723-4709-ad60-690236ca1a80"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<text><![CDATA[Stock]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="27" width="44" height="20" uuid="68eda921-f448-4f37-96ab-f70d763b767c"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="94" y="2" width="26" height="17" uuid="f22ee446-a7b6-413e-bbaf-a98cc12d92cc"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{qut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="2" width="60" height="17" uuid="f2409832-b4f8-4d74-9286-98c6a83b1e30"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pro_nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="2" width="23" height="18" uuid="bb574038-3206-4114-b93a-91523965d381"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["("+$F{pro_quantidade}+")"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="120" y="2" width="35" height="17" uuid="7d85f97f-395e-4854-81bc-5733104a84e0"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sub}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="91" splitType="Stretch">
+			<staticText>
+				<reportElement x="20" y="14" width="50" height="20" uuid="4717cd88-44b0-475a-8771-ceca56411a09"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="31" y="59" width="155" height="20" uuid="d6845fef-704b-41a9-9995-65893e9d0524"/>
+				<textElement textAlignment="Center">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<text><![CDATA[----FIM DO RELATORIO----]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="65" y="14" width="77" height="20" uuid="cb213c0f-f74f-4fef-9281-bd5fce86ac85"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="Trebuchet MS" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TOTAL} + " MZN"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

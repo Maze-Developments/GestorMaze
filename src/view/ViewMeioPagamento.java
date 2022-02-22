@@ -12,11 +12,12 @@
  * Maze dev License for more details.
  *
  * You should have received a copy of the Maze Development License
- * along with this program.  If not, see <http://www.mazedev.com/licenses/>.
+ * along with this program.  If not, see <http://www.mazedeve.com/licenses/>.
  */
 package view;
 
 import DAO.ItensVendaDAO;
+import DAO.VendaDAO;
 import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -57,6 +58,7 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTF_mesa = new javax.swing.JTextField();
         jLbl_nomeFuncionario = new javax.swing.JLabel();
+        jLbl_conta = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -119,6 +121,9 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
         jLbl_nomeFuncionario.setForeground(new java.awt.Color(0, 153, 153));
         jLbl_nomeFuncionario.setText("Nome do Funcionario");
 
+        jLbl_conta.setForeground(new java.awt.Color(0, 153, 153));
+        jLbl_conta.setText("Nome do Funcionario");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -138,7 +143,9 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
                     .addComponent(jRbtn_mpesa)
                     .addComponent(jLbl_nomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(jBtn_confirmar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBtn_confirmar)
+                    .addComponent(jLbl_conta, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28))
         );
         jPanel1Layout.setVerticalGroup(
@@ -155,14 +162,16 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRbtn_cartao)
-                            .addComponent(jRbtn_contamovel)))
+                            .addComponent(jRbtn_contamovel))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTF_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLbl_nomeFuncionario)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jBtn_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTF_mesa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLbl_nomeFuncionario))
+                        .addComponent(jBtn_confirmar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLbl_conta)))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -214,6 +223,7 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
         String nomeFuncionario = jLbl_nomeFuncionario.getText();
         
         ItensVendaDAO dao = new ItensVendaDAO();
+        VendaDAO daoo = new VendaDAO();
         dao.imprimirConta(mesa, dat);
         dao.finalizarConta(mesa, dat, metodo, nomeFuncionario);
         
@@ -258,6 +268,7 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
     private javax.swing.ButtonGroup gp_pagamento;
     private javax.swing.JButton jBtn_confirmar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLbl_conta;
     private javax.swing.JLabel jLbl_nomeFuncionario;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRbtn_cartao;
@@ -269,5 +280,6 @@ public class ViewMeioPagamento extends javax.swing.JFrame {
 public void valorMesa(String mesa, String nomeFuncionario) {
         jTF_mesa.setText(mesa);
         jLbl_nomeFuncionario.setText(nomeFuncionario);
+//        jLbl_conta.setText(conta);
     }
 }
